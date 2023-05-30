@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dawid\\source\\repos\\AGDAR\\AGDAR\\AGDAR.csproj": {}
+    "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dawid\\source\\repos\\AGDAR\\AGDAR\\AGDAR.csproj": {
+    "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dawid\\source\\repos\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "projectName": "AGDAR",
-        "projectPath": "C:\\Users\\Dawid\\source\\repos\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectPath": "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dawid\\source\\repos\\AGDAR\\AGDAR\\obj\\",
+        "outputPath": "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,26 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
