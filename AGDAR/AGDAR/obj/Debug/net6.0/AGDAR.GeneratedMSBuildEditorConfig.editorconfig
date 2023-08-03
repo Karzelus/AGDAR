@@ -9,37 +9,57 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AGDAR
 build_property.RootNamespace = AGDAR
-build_property.ProjectDir = C:\Users\Dawid\Desktop\AGDAR\AGDAR\AGDAR\AGDAR\
+build_property.ProjectDir = C:\Users\Dawid\Desktop\Nowy folder\AGDAR\AGDAR\AGDAR\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Dawid\Desktop\AGDAR\AGDAR\AGDAR\AGDAR
+build_property.MSBuildProjectDirectory = C:\Users\Dawid\Desktop\Nowy folder\AGDAR\AGDAR\AGDAR
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/Home/Index.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/ABC/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQUJDXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/ABC/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQUJDXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/ABC/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQUJDXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/ABC/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQUJDXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/ABC/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQUJDXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/Home/Privacy.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/Shared/Error.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/_ViewImports.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/_ViewStart.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dawid/Desktop/AGDAR/AGDAR/AGDAR/AGDAR/Views/Shared/_Layout.cshtml]
+[C:/Users/Dawid/Desktop/Nowy folder/AGDAR/AGDAR/AGDAR/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-4ts45ge3i7

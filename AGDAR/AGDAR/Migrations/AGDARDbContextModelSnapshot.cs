@@ -37,7 +37,46 @@ namespace AGDAR.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
+                });
+
+            modelBuilder.Entity("AGDAR.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<int>("OrderdId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("SeckondName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.Order", b =>
@@ -60,7 +99,10 @@ namespace AGDAR.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("ClientId")
+                        .IsUnique();
+
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.OrderProduct", b =>
@@ -83,7 +125,7 @@ namespace AGDAR.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProduct");
+                    b.ToTable("OrderProduct", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.Part", b =>
@@ -107,7 +149,7 @@ namespace AGDAR.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parts");
+                    b.ToTable("Parts", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.PartProduct", b =>
@@ -130,7 +172,7 @@ namespace AGDAR.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("PartProduct");
+                    b.ToTable("PartProduct", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.Product", b =>
@@ -162,7 +204,7 @@ namespace AGDAR.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.ProductCategory", b =>
@@ -185,7 +227,7 @@ namespace AGDAR.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.Role", b =>
@@ -202,7 +244,7 @@ namespace AGDAR.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("AGDAR.Models.State", b =>
@@ -219,10 +261,10 @@ namespace AGDAR.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
+                    b.ToTable("States", (string)null);
                 });
 
-            modelBuilder.Entity("AGDAR.Models.User", b =>
+            modelBuilder.Entity("AGDAR.Models.Worker", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -232,10 +274,6 @@ namespace AGDAR.Migrations
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -249,39 +287,27 @@ namespace AGDAR.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SeckondName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("AGDAR.Models.Client", b =>
-                {
-                    b.HasBaseType("AGDAR.Models.User");
-
-                    b.Property<int>("OrderdId")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Client");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.Worker", b =>
-                {
-                    b.HasBaseType("AGDAR.Models.User");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
                     b.HasIndex("RoleId");
 
-                    b.HasDiscriminator().HasValue("Worker");
+                    b.ToTable("Workers", (string)null);
+                });
+
+            modelBuilder.Entity("AGDAR.Models.Order", b =>
+                {
+                    b.HasOne("AGDAR.Models.Client", null)
+                        .WithOne("Order")
+                        .HasForeignKey("AGDAR.Models.Order", "ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AGDAR.Models.OrderProduct", b =>
@@ -355,6 +381,12 @@ namespace AGDAR.Migrations
             modelBuilder.Entity("AGDAR.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("AGDAR.Models.Client", b =>
+                {
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AGDAR.Models.Order", b =>

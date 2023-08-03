@@ -8,8 +8,8 @@
         public string Description { get; set; }
         public string Brand { get; set; }
         public int StateId { get; set; }
-        public List<OrderProduct> Orders { get; set; }
-        public List<ProductCategory> Categorys { get; set; }
-        public List<PartProduct> Parts { get; set; }
+        public virtual List<OrderProduct> Orders { get; set; }
+        public virtual List<ProductCategory> Categorys { get; set; }
+        public virtual List<PartProduct> Parts { get; set; }
     }
 }

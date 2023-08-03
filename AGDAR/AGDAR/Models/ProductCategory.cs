@@ -1,4 +1,6 @@
-﻿namespace AGDAR.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AGDAR.Models
 {
     public class ProductCategory
     {

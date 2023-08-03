@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
+    "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
+    "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "projectName": "AGDAR",
-        "projectPath": "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectPath": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dawid\\Desktop\\AGDAR\\AGDAR\\AGDAR\\AGDAR\\obj\\",
+        "outputPath": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -62,6 +62,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.15, )"
             }
           },
           "imports": [

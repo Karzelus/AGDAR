@@ -1,5 +1,7 @@
 ﻿using AGDAR.Models;
 using AGDAR.Models.DTO;
+using AGDAR.Services;
+using AGDAR.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,41 +10,66 @@ namespace AGDAR.Controllers
     [Route("api/product")]
     public class ProductController : ControllerBase
     {
-        private readonly AGDARDbContext _dbContext;
-        private readonly IMapper _mapper;
-        public ProductController(AGDARDbContext dbContext, IMapper mapper) // Konstruktor
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService) // Konstruktor
         {
-            _dbContext = dbContext;
-            _mapper = mapper;
+            _productService = productService;
         }
+
+        [HttpPut("{id}")]
+        public ActionResult Update([FromBody] CreateProductDto dto, [FromRoute] int id) //Edit
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var isUpdated = _productService.Update(id, dto);
+            if (!isUpdated)
+            {
+                return NotFound();
+            }
+            return Ok();
+
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id) //Delete
+        {
+            var isDeleted = _productService.Delete(id);
+
+            if (isDeleted) return NoContent();
+            return NotFound();
+        }
+
         [HttpPost]
         public ActionResult CreateProduct([FromBody]CreateProductDto dto) // Create
         {
-            var product = _mapper.Map<Product>(dto);
-            _dbContext.Products.Add(product);
-            _dbContext.SaveChanges();
+            if(!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);
+            }
 
-            return Created($"/api/product/{product.Id}", null);
+            var id = _productService.Create(dto);
+            return Created($"/api/product/{id}", null);
         }
+
         [HttpGet]
         public ActionResult<IEnumerable<ProductDto>> GetAll() // GetAll
         {
-            var products = _dbContext.Products.ToList();
-
-            var productsDto = _mapper.Map<List<ProductDto>>(products);
-            return Ok(productsDto);
+            var productsDtos = _productService.GetAll();
+            return Ok(productsDtos);
         }
 
         [HttpGet("{id}")]
         public ActionResult<ProductDto> Get([FromRoute]int id) // Get
         {
-            var product = _dbContext.Products.FirstOrDefault(x => x.Id == id);
+            var product = _productService.GetById(id);
             if(product == null)
             {
                 return NotFound();
             }
-            var productDto = _mapper.Map<ProductDto>(product);
-            return Ok(productDto);
+            return Ok(product);
         }
     }
 }

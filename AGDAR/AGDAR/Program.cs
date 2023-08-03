@@ -1,12 +1,32 @@
 using AGDAR.Models;
+using AGDAR.Repositories;
 using AGDAR.Seeder;
+using AGDAR.Services;
+using AGDAR.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Services
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IWorkerService, WorkerService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPartService, PartService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IStateService, StateService>();
 
+//Repositories
+builder.Services.AddScoped<RoleRepository>();
+builder.Services.AddScoped<StateRepository>();
+builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<ClientRepository>();
+builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<WorkerRepository>();
 
 // Mapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
