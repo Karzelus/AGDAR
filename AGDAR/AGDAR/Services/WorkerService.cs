@@ -16,7 +16,7 @@ namespace AGDAR.Services
             _workerRepository = workerRepository;
             _mapper = mapper;
         }
-        public bool Update(int id, CreateWorkerDto dto) // Update
+        public bool Update(int id, WorkerDto dto) // Update
         {
             var worker = _workerRepository.GetById(id);
             if (worker is null)
@@ -29,6 +29,7 @@ namespace AGDAR.Services
             worker.DateOfBirth = dto.DateOfBirth;
             worker.Password = dto.Password;
             worker.RoleId = dto.RoleId;
+            
 
             _workerRepository.UpdateAndSaveChanges(worker);
             return true;
@@ -62,7 +63,7 @@ namespace AGDAR.Services
 
         }
 
-        public int Create(CreateWorkerDto dto) //Create
+        public int Create(WorkerDto dto) //Create
         {
             var worker = _mapper.Map<Worker>(dto);
             _workerRepository.AddAndSaveChanges(worker);

@@ -16,7 +16,7 @@ namespace AGDAR.Services
             _mapper = mapper;
         }
 
-        public bool Update(int id, CreateClientDto dto) // Update
+        public bool Update(int id, ClientDto dto) // Update
         {
             var client = _clientRepository.GetById(id);
             if (client is null)
@@ -62,7 +62,7 @@ namespace AGDAR.Services
             return clientsDtos;
         }
 
-        public int Create(CreateClientDto dto) //Create
+        public int Create(ClientDto dto) //Create
         {
             var client = _mapper.Map<Client>(dto);
             _clientRepository.AddAndSaveChanges(client);

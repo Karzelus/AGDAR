@@ -1,14 +1,53 @@
+using AGDAR;
 using AGDAR.Models;
+using AGDAR.Models.DTO;
+using AGDAR.Models.Validators;
 using AGDAR.Repositories;
 using AGDAR.Seeder;
 using AGDAR.Services;
 using AGDAR.Services.Interfaces;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//Authentication
+
+var authenticationSettings = new AuthenticationSettings();
+builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+builder.Services.AddSingleton(authenticationSettings);
+builder.Services.AddAuthentication(option =>
+{
+    option.DefaultAuthenticateScheme = "Bearer";
+    option.DefaultScheme = "Bearer";
+    option.DefaultChallengeScheme = "Bearer";
+}).AddJwtBearer(cfg =>
+{
+    cfg.RequireHttpsMetadata = false;
+    cfg.SaveToken = true;
+    cfg.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = authenticationSettings.jwtIssuer,
+        ValidAudience = authenticationSettings.jwtIssuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
+    };
+});
+//Add service SESSION
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation();
 //Services
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -16,13 +55,18 @@ builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IWorkerService, WorkerService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPartService, PartService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IStateService, StateService>();
+builder.Services.AddScoped<IValidator<WorkerDto>, RegisterWorkerDtoValidator>();
+builder.Services.AddScoped<IPasswordHasher<Worker>, PasswordHasher<Worker>>();
+builder.Services.AddScoped<IPasswordHasher<Client>, PasswordHasher<Client>>();
 
 //Repositories
 builder.Services.AddScoped<RoleRepository>();
 builder.Services.AddScoped<StateRepository>();
 builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<ProductCategoryRepository>();
 builder.Services.AddScoped<ClientRepository>();
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<ProductRepository>();
@@ -49,13 +93,14 @@ var seeder = scope.ServiceProvider.GetRequiredService<AGDARSeeder>();
 
 seeder.Seed();
 
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

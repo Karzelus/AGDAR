@@ -13,16 +13,14 @@ namespace AGDAR.Mapping
 
             CreateMap<Worker, WorkerDto>()
                 .ForMember(m => m.Role, c => c.MapFrom(s => s.Role.Name));
-
-            CreateMap<CreateWorkerDto, Worker>();
+            CreateMap<WorkerDto, Worker>();
 
             CreateMap<Client, ClientDto>()
                .ForMember(m => m.OrderdId, c => c.MapFrom(s => s.Order.Id));
-
-            CreateMap<CreateClientDto, Client>();
+            CreateMap<ClientDto, Client>();
 
             CreateMap<Part, PartDto>();
-            CreateMap<CreatePartDto, Part>();
+            CreateMap<PartDto, Part>();
 
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();

@@ -16,3 +16,262 @@ html {
 body {
   margin-bottom: 60px;
 }
+.site-header{
+
+}
+.nav-text-link-color {
+    color: #183153;
+}
+.nav-items-style {
+    font-size: 12px;
+    padding: 2px 5px 1px 5px;
+}
+.nav-items-divider{
+    height:25px;
+    width:1px;
+    margin:1px 5px 1px 5px;
+    background-color:black;
+}
+.login-containers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+.login-container {
+    width:500px;
+    height:250px;
+    margin:2rem;
+    -webkit-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    border-radius: 4px;
+    padding: 10px;
+}
+.login-input{
+    
+
+}
+.submit-login-btn{
+
+}
+.login-label{
+
+}
+.login-accept-btn {
+    background-color: #FFCB74;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    color: #2F2F2F;
+    margin-left: auto;
+    padding: 8px;
+    float:right;
+}
+.newsletter-container {
+    height: 200px;
+    width: 1000px;
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: inset 0px 0px 100px 60px rgba(66, 68, 90, 1);
+    -moz-box-shadow: inset 0px 0px 100px 10px rgba(66, 68, 90, 1);
+    box-shadow: inset 0px 0px 100px 50px rgba(70, 68, 90, 1);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 50px;
+    vertical-align: middle;
+}
+.newsletter-inputs {
+}
+.newsletter-title {
+    color:white;
+    text-shadow: 0 0 30px #000;
+}
+.newsletter-input{
+    margin:5px
+}
+.checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top:5px;
+    margin-right:5px;
+}
+.checkboxes{
+    display:grid;
+}
+.checkbox-content {
+    font-size: 12px;
+    margin-top: 5px;
+    color: white;
+}
+.register-container {
+    width: 800px;
+    min-height: 300px;
+    margin: 2rem;
+    -webkit-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    border-radius: 4px;
+    padding: 10px;
+    justify-self:center;
+}
+.admin-table {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-width: 1px;
+    border-color: #FFCB74;
+    border-style: solid;
+    color: #000000;
+}
+.admin-table td, .admin-table tr {
+    border-width: 1px;
+    border-color: #FFCB74;
+    border-style: solid;
+    padding: 5px;
+}
+.admin-table thead {
+    background-color: #FFCB74;
+}
+.action-btns {
+    display: flex;
+    justify-content: space-around;
+}
+.edit-btn {
+    width: 60px;
+    color: black;
+    border: solid 2px #05C793;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 1px;
+    text-align: -webkit-center;
+}
+.edit-btn:hover {
+    background-color: #05C793;
+    color:white;
+    transition: ease-in-out 0.2s;
+}
+.details-btn {
+    width: 60px;
+    color: black;
+    border: solid 2px #4F4789;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 1px;
+    text-align: -webkit-center;
+}
+.details-btn:hover {
+    background-color: #4F4789;
+    color: white;
+    transition: ease-in-out 0.2s;
+}
+.delete-btn {
+    width: 60px;
+    color: black;
+    border: solid 2px #E11444;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 1px;
+    text-align: -webkit-center;
+}
+.delete-btn:hover {
+    background-color: #E11444;
+    color: white;
+    transition: ease-in-out 0.2s;
+}
+.edit-second-btn {
+    width: 60px;
+    color: black;
+    border: solid 2px #05C793;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 1px;
+    text-align: -webkit-center;
+    float: right;
+}
+.edit-second-btn:hover {
+    background-color: #05C793;
+    color: white;
+    transition: ease-in-out 0.2s;
+}
+.edit-backToList-btn {
+    width: 100px;
+    color: black;
+    border: solid 2px #E11444;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 2px;
+    margin: 1px;
+    text-align: -webkit-center;
+    float: right;
+   
+}
+
+.edit-backToList-btn:hover {
+    background-color: #E11444;
+    color: white;
+    transition: ease-in-out 0.2s;
+}
+.admin-details-container {
+    width: 500px;
+    min-height: auto;
+    margin: 2rem;
+    -webkit-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    border-radius: 4px;
+    padding: 12px;
+    padding-bottom: 50px;
+    justify-self: center;
+
+}
+.footer-list{
+    list-style:none;
+    line-height:25px;
+    max-width: 200px;
+    padding-bottom:20px;
+}
+.footer-container{
+    min-width:100px;
+}
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.footer-list-header{
+    text-align:center;
+}
+.footer-list-element {
+    white-space: normal;
+    padding-right:30px;
+}
+.footer-newsletter-input{
+    height:30px;
+    padding-left:11px;
+}
+.footer-newsletter-accept-btn {
+    background-color: #FFCB74;
+    border: none;
+    border-radius: 4px;
+    inline-size: -webkit-fill-available;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2F2F2F;
+    margin-left: auto;
+    float: right;
+    padding: unset;
+}
+.footer-icon {
+    fill: #ffcb74;
+    margin-right:5px;
+    margin-bottom:2px;
+}

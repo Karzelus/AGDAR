@@ -10,5 +10,9 @@ namespace AGDAR.Repositories
         {
             _dbContext = dbcontext;
         }
+        public Client GetByEmail(string email)
+        {
+            return _dbContext.Clients.FirstOrDefault(c => c.Email == email);
+        }
     }
 }

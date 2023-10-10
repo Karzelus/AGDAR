@@ -1,0 +1,68 @@
+﻿@model AGDAR.Models.DTO.ClientDto
+
+@{
+    ViewData["Title"] = "LoginClient";
+}
+
+<h1 class="site-header">Strona Logowania</h1>
+<div class="row">
+    <div class="login-containers">
+        <div class="login-container" style="position: relative;">
+            <h5>Jesteś tu pierwszy raz ?</h5><br />
+            <h5>Załóż darmowe konto w AGDAR.pl i zyskaj dostęp do najlepszych cen i setek marek zajmujących się produkcją narzędzi.</h5>
+            <br /><br />
+            <form asp-action="Create" method="get">
+                <button class="login-accept-btn">ZAREJESTRUJ SIĘ</button>
+            </form>
+        </div>
+        <div class="login-container">
+            <h5>Masz już konto ?</h5>
+            <form asp-action="Login">
+                <div class="form-group">
+                    <label asp-for="Email" class="login-label"></label><br />
+                    <input asp-for="Email" class="login-input" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="login-label"></label><br />
+                    <input asp-for="Password" class="login-input" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="d-flex">
+                    <input type="checkbox" /> 
+                    <p style="margin:1px 0px 0px 15px">Zapamiętaj mnie</p>
+                    <a href="#" style="margin-top:5px; margin-left: auto; float:right; font-size:12px; text-decoration:none; color:gray">Nie pamiętasz hasła ?</a>
+                </div>
+                <br />
+                <form asp-action="Login" method="get">
+                    <button type="submit" class="login-accept-btn">ZALOGUJ SIĘ</button>
+                </form>
+            </form>
+        </div>
+        <div class="newsletter-container" style="background-image: url('../images/Tła/newsletter.png');">
+            <h4 class="newsletter-title">NEWSLETTER</h4>
+            <div class="newsletter-inputs">
+                <div class="d-flex">
+                    <input placeholder="*Podaj e-mail..." class="newsletter-input"/>
+                    <input placeholder="*Podaj imię..."  class="newsletter-input" />
+                </div>
+                <div class="checkboxes">
+                    <div class="d-flex">
+                        <input type="checkbox" class="checkbox" />
+                        <span class="checkbox-content">Akceptuję Regulamin i Politykę Prywatności *</span>
+                    </div>
+                    <div class="d-flex">
+                        <input type="checkbox" class="checkbox" />
+                        <div class="d-flex">
+                            <span class="checkbox-content">
+                                Chcę być informowany o bieżących promocjach i otrzymywać najnowsze oferty.
+                            </span>
+                            <button class="login-accept-btn" style="padding:2px; margin-left:20px;">ZAPISZ SIĘ</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model AGDAR.Models.DTO.CategoryDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Category details</h1>
+
+<div class="admin-details-container">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10" style="width:100%;overflow-wrap: break-word;">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <a asp-action="Index" class="edit-backToList-btn">Back to List</a>
+    <a asp-action="Edit" class="edit-second-btn" asp-route-id="@Model?.Id">Edit</a>
+</div>

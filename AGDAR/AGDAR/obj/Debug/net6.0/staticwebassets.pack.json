@@ -13,6 +13,42 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Dewalt.png",
+      "PackagePath": "staticwebassets\\images\\Dewalt.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\DewaltSzlifierka.png",
+      "PackagePath": "staticwebassets\\images\\DewaltSzlifierka.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Graphite.png",
+      "PackagePath": "staticwebassets\\images\\Graphite.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Icons\\24hDeliveryIcon.png",
+      "PackagePath": "staticwebassets\\images\\Icons\\24hDeliveryIcon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Icons\\FreeDeliveryIcon.png",
+      "PackagePath": "staticwebassets\\images\\Icons\\FreeDeliveryIcon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Icons\\InstallmentsIcon.png",
+      "PackagePath": "staticwebassets\\images\\Icons\\InstallmentsIcon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Icons\\PhoneIcon.png",
+      "PackagePath": "staticwebassets\\images\\Icons\\PhoneIcon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\MakitaWiertarka.png",
+      "PackagePath": "staticwebassets\\images\\MakitaWiertarka.png"
+    },
+    {
+      "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Tła\\newsletter.png",
+      "PackagePath": "staticwebassets\\images\\Tła\\newsletter.png"
+    },
+    {
       "Id": "C:\\Users\\Dawid\\Desktop\\Nowy folder\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,0 +1,32 @@
+﻿@model AGDAR.Models.DTO.PartDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Part details</h1>
+
+<div class="admin-details-container">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10" style="width:100%;overflow-wrap: break-word;">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+    <a asp-action="Index" class="edit-backToList-btn">Back to List</a>
+    <a asp-action="Edit" class="edit-second-btn" asp-route-id="@Model?.Id">Edit</a>   
+</div>

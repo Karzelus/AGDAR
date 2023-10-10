@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using AGDAR.Models.DTO;
 
 namespace AGDAR.Models
 {
@@ -16,7 +17,7 @@ namespace AGDAR.Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Worker> Workers { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+        //public DbSet<ProductCategory> ProductCategories { get; set; }
 
         public void AddEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {
@@ -117,37 +118,29 @@ namespace AGDAR.Models
 
             modelBuilder.Entity<ProductCategory>()
                 .HasKey(t => t.Id);
-            modelBuilder.Entity<ProductCategory>()
-                .HasOne(c => c.ProductMany)
-                .WithMany(c => c.Categorys)
-                .HasForeignKey(pc => pc.ProductId);
-            modelBuilder.Entity<ProductCategory>()
-                .HasOne(c => c.CategoryMany)
-                .WithMany(c => c.Products)
-                .HasForeignKey(pc => pc.CategoryId);
+
 
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(t => t.Id);
             modelBuilder.Entity<OrderProduct>()
-                .HasOne(c => c.OrderMany)
+                .HasOne(c => c.Order)
                 .WithMany(c => c.Products)
                 .HasForeignKey(pc => pc.OrderId);
-            modelBuilder.Entity<OrderProduct>()
-                .HasOne(c => c.ProductMany)
-                .WithMany(c => c.Orders)
-                .HasForeignKey(pc => pc.ProductId);
 
             modelBuilder.Entity<PartProduct>()
                 .HasKey(t => t.Id);
             modelBuilder.Entity<PartProduct>()
-                .HasOne(c => c.PartMany)
+                .HasOne(c => c.Part)
                 .WithMany(c => c.Products)
                 .HasForeignKey(pc => pc.PartId);
-            modelBuilder.Entity<PartProduct>()
-                .HasOne(c => c.ProductMany)
-                .WithMany(c => c.Parts)
-                .HasForeignKey(pc => pc.ProductId);
+
         }
+
+
+        public DbSet<AGDAR.Models.DTO.WorkerDto>? WorkerDto { get; set; }
+
+
+        public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer(_connectionString);

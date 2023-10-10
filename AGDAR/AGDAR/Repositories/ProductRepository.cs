@@ -1,4 +1,6 @@
 ﻿using AGDAR.Models;
+using AGDAR.Models.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace AGDAR.Repositories
 {

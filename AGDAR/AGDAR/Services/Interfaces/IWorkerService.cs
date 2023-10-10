@@ -4,9 +4,9 @@ namespace AGDAR.Services.Interfaces
 {
     public interface IWorkerService
     {
-        bool Update(int id, CreateWorkerDto dto);
+        bool Update(int id, WorkerDto dto);
         bool Delete(int id);
-        int Create(CreateWorkerDto dto);
+        int Create(WorkerDto dto);
         List<WorkerDto> GetAll();
         WorkerDto GetById(int id);
     }

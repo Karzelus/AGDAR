@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public int PartId { get; set; }
         public int ProductId { get; set; }
-        public Part PartMany { get; set; }
-        public Product ProductMany { get; set; }
+        public Part Part { get; set; }
+        public Product Product { get; set; }
     }
 }

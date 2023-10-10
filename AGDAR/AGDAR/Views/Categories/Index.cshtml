@@ -1,0 +1,35 @@
+﻿@model IEnumerable<AGDAR.Models.DTO.CategoryDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Categories</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th width="15%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="action-btns">
+                <a asp-action="Edit" class="edit-btn" asp-route-id="@item.Id">Edit</a>
+                @*<a asp-action="Details" class="details-btn" asp-route-id="@item.Id">Details</a>*@
+                <a asp-action="Delete" class="delete-btn" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -4,9 +4,9 @@ namespace AGDAR.Services.Interfaces
 {
     public interface IClientService
     {
-        bool Update(int id, CreateClientDto dto);
+        bool Update(int id, ClientDto dto);
         bool Delete(int id);
-        int Create(CreateClientDto dto);
+        int Create(ClientDto dto);
         List<ClientDto> GetAll();
         ClientDto GetById(int id);
     }

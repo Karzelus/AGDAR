@@ -4,10 +4,10 @@ namespace AGDAR.Services.Interfaces
 {
     public interface IPartService
     {
-        bool Update(int id, CreatePartDto dto);
+        bool Update(int id,PartDto dto);
         bool Delete(int id);
-        int Create(CreatePartDto dto);
-        IEnumerable<PartDto> GetAll();
+        int Create(PartDto dto);
+        List<PartDto> GetAll();
         PartDto GetById(int id);
     }
 }

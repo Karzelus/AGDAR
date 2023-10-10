@@ -15,7 +15,7 @@ namespace AGDAR.Services
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        public bool Update(int id, CreatePartDto dto) // Update
+        public bool Update(int id, PartDto dto) // Update
         {
             var part = _dbContext.Parts.FirstOrDefault(x => x.Id == id);
             if (part is null)
@@ -51,7 +51,7 @@ namespace AGDAR.Services
             return partDto;
         }
 
-        public IEnumerable<PartDto> GetAll() //GetAll
+        public List<PartDto> GetAll() //GetAll
         {
             var parts = _dbContext.Parts.ToList();
             var partsDtos = _mapper.Map<List<PartDto>>(parts);
@@ -59,7 +59,7 @@ namespace AGDAR.Services
 
         }
 
-        public int Create(CreatePartDto dto) //Create
+        public int Create(PartDto dto) //Create
         {
             var part = _mapper.Map<Part>(dto);
             _dbContext.Parts.Add(part);

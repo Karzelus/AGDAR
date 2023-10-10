@@ -10,5 +10,10 @@ namespace AGDAR.Repositories
         {
             _dbContext = dbcontext;
         }
+        public Category Find(string name)
+        {
+            return _dbContext.Categories.FirstOrDefault(x => x.Name == name);
+        }
     }
+
 }
