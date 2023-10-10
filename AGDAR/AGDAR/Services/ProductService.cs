@@ -68,7 +68,7 @@ namespace AGDAR.Services
         {
             var product = _mapper.Map<Product>(dto);
 
-            product.Img = "a";//DODAL TOLDI
+            //product.Img = "a";//DODAL TOLDI----------------------------------------------
             _productRepository.AddAndSaveChanges(product);
             
 

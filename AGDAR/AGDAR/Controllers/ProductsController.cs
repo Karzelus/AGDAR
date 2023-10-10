@@ -58,7 +58,7 @@ namespace AGDAR.Controllers
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Brand,StateId,Categories,Img")] CreateProductDto product)//dodanie IMG TOŁDI
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Brand,StateId,Categories,Img")] CreateProductDto product)
         {
 
                 _productService.Create(product);
