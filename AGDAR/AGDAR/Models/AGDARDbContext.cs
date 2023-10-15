@@ -116,8 +116,6 @@ namespace AGDAR.Models
                 .Property(c => c.DateOfBirth)
                 .IsRequired();
 
-            modelBuilder.Entity<ProductCategory>()
-                .HasKey(t => t.Id);
 
 
             modelBuilder.Entity<OrderProduct>()

@@ -13,7 +13,8 @@ namespace AGDAR.Models.DTO
         public string Description { get; set; }
         public string Brand { get; set; }
         public int StateId { get; set; }
-        public List<Category>? Categories { get; set; }
+        public string Img { get; set; }
+        public List<Category> Categories { get; set; } = new List<Category>();
         public List<PartProduct>? Parts { get; set; }
     }
 }

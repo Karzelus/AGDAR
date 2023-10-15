@@ -14,10 +14,12 @@ namespace AGDAR.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         // GET: Products
@@ -52,12 +54,15 @@ namespace AGDAR.Controllers
         //// GET: Products/Create
         public IActionResult Create()
         {
+            var categories = _categoryService.GetAll().ToList(); // Wywołanie metody, która pobiera dostępne kategorie
+            ViewData["Categories"] = new SelectList(categories, "Id", "Name");
             return View();
         }
 
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Brand,StateId,Categories,Img")] CreateProductDto product)
         {
 
