@@ -275,3 +275,30 @@ body {
     margin-right:5px;
     margin-bottom:2px;
 }
+.filters-product-box {
+    background-color: #ebebeb;
+    border:none;
+    border-radius:2px;
+    padding:10px;
+}
+.products-boxes {
+    padding: 10px;
+}
+.product-box {
+    border: solid 3px #ebebeb;
+    padding:10px;
+    border-radius: 2px;
+    margin: 10px;
+    justify-content: space-between;
+    max-height:220px;
+}
+.produckt-title {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+.product-price {
+    color: #FFCB74;
+    font-size: 20px;
+    font-weight: 700;
+}

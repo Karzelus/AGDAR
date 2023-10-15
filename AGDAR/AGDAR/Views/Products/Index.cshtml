@@ -11,60 +11,49 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Img)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StateId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <img src="@Url.Content(item.Img)" alt="Product Image" width="350" height="350"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StateId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<main class="d-flex">
+    <div class="w-25 filters-product-box" style="line-break: anywhere; height:400px">Tu będą filtry</div>
+    <div class="w-75 products-boxes" style="line-break: anywhere;">
+        @foreach (var item in Model)
+        {
+            <div class="d-flex product-box">
+                <div>
+                    <img src="@Url.Content(item.Img)" alt="Product Image" width="200" height="200" />
+                </div>
+                <div style="margin-inline-end: auto; padding-left:20px; padding-right:20px; line-break: anywhere;width:50%;overflow:hidden ">
+                    <div class="produckt-title">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </div>
+                    <div class="product-descryption">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                </div>
+                <div style="padding-right:20px; overflow:hidden">
+                    <div class="product-price">
+                        @Html.DisplayFor(modelItem => item.Price) zł
+                    </div>
+                    <div>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(modelItem => item.StateId)
+                    </div>
+                    <div style="display: inline-grid; justify-items: center;">
+                        <div style="margin:5px">
+                            <a asp-action="Edit" class="edit-btn" asp-route-id="@item.Id">Edit</a>
+                        </div>
+                        <div style="margin:5px">
+                            <a asp-action="Details" class="details-btn" asp-route-id="@item.Id">Details</a>
+                        </div>
+                        <div style="margin:5px">
+                            <a asp-action="Delete" class="delete-btn" asp-route-id="@item.Id">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+     </div>
+</main>
 @if(@context.HttpContext.Session.GetString("WorkerId") != null)
 {
 <div>
@@ -79,3 +68,4 @@
     <h2>Client emial: @context.HttpContext.Session.GetString("ClientEmail")</h2>
 </div>
 }
+
