@@ -17,7 +17,7 @@ namespace AGDAR.Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Worker> Workers { get; set; }
-        //public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
 
         public void AddEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {
@@ -135,10 +135,10 @@ namespace AGDAR.Models
         }
 
 
-        public DbSet<AGDAR.Models.DTO.WorkerDto>? WorkerDto { get; set; }
+        //public DbSet<AGDAR.Models.DTO.WorkerDto>? WorkerDto { get; set; }
 
 
-        public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
+        //public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer(_connectionString);

@@ -35,12 +35,7 @@ namespace AGDAR.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Categories");
                 });
@@ -82,85 +77,6 @@ namespace AGDAR.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.DTO.ClientDto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrderdId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SeckondName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClientDto");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.DTO.WorkerDto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SeckondName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkerDto");
                 });
 
             modelBuilder.Entity("AGDAR.Models.Order", b =>
@@ -297,19 +213,18 @@ namespace AGDAR.Migrations
 
             modelBuilder.Entity("AGDAR.Models.ProductCategory", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("ProductCategory");
                 });
@@ -385,13 +300,6 @@ namespace AGDAR.Migrations
                     b.ToTable("Workers");
                 });
 
-            modelBuilder.Entity("AGDAR.Models.Category", b =>
-                {
-                    b.HasOne("AGDAR.Models.Product", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("AGDAR.Models.Order", b =>
                 {
                     b.HasOne("AGDAR.Models.Client", null)
@@ -439,6 +347,25 @@ namespace AGDAR.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("AGDAR.Models.ProductCategory", b =>
+                {
+                    b.HasOne("AGDAR.Models.Category", "Category")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AGDAR.Models.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("AGDAR.Models.Worker", b =>
                 {
                     b.HasOne("AGDAR.Models.Role", "Role")
@@ -448,6 +375,11 @@ namespace AGDAR.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("AGDAR.Models.Category", b =>
+                {
+                    b.Navigation("ProductCategories");
                 });
 
             modelBuilder.Entity("AGDAR.Models.Client", b =>
@@ -468,7 +400,7 @@ namespace AGDAR.Migrations
 
             modelBuilder.Entity("AGDAR.Models.Product", b =>
                 {
-                    b.Navigation("Categories");
+                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }

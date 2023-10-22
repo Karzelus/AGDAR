@@ -38,6 +38,9 @@
                     <div>
                         @Html.DisplayFor(modelItem => item.StateId)
                     </div>
+                    <div>
+                        @Html.DisplayFor(modelItem => item.CategoriesList)
+                    </div>
                     <div style="display: inline-grid; justify-items: center;">
                         <div style="margin:5px">
                             <a asp-action="Edit" class="edit-btn" asp-route-id="@item.Id">Edit</a>

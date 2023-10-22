@@ -3,6 +3,7 @@ using AGDAR.Models.DTO;
 using AGDAR.Repositories;
 using AGDAR.Services.Interfaces;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AGDAR.Services
 {
@@ -53,6 +54,11 @@ namespace AGDAR.Services
                 return null;
             }
             var productDto = _mapper.Map<ProductDto>(product);
+            var productCategory = _productCategoryRepository.GetAll().Where(pc => pc.ProductId == id).ToList();
+            foreach(var category in productCategory)
+            {
+                    productDto.CategoriesList.Add(_categoryRepository.GetById(category.CategoryId));
+            }
             return productDto;
         }
 
@@ -63,6 +69,12 @@ namespace AGDAR.Services
             return productsDtos;
 
         }
+        //private List<ProductCategory> GetProductCategories(int id)
+        //{
+        //    List<ProductCategory> categoriesList = _productCategoryRepository.GetAll().ToList();
+        //    var categories = "";
+        //    return categories;
+        //}
 
         public int Create(CreateProductDto dto) //Create
         {
@@ -72,15 +84,15 @@ namespace AGDAR.Services
             _productRepository.AddAndSaveChanges(product);
             
 
-            foreach(var c in dto.Categories)
+            foreach(var name in dto.CategoriesId)
             {
-                var category = _categoryRepository.Find(c.Name);
+                var category = _categoryRepository.Find(name);
 
                 if(category is null)
                 {
                     category = new Category()
                     {
-                        Name = c.Name,
+                        Name = name,
                     };
 
                     _categoryRepository.AddAndSaveChanges(category);

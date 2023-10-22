@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace AGDAR.Models.DTO
 {
@@ -14,7 +15,8 @@ namespace AGDAR.Models.DTO
         public string Brand { get; set; }
         public int StateId { get; set; }
         public string Img { get; set; }
-        public List<Category> Categories { get; set; } = new List<Category>();
-        public List<PartProduct>? Parts { get; set; }
+        public List<SelectListItem> CategoriesList { get; set; }
+        public string[] CategoriesId { get; set; }
+        public List<int>? PartsIds { get; set; }
     }
 }

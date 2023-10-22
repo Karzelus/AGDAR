@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AGDAR.Models;
 using AGDAR.Services.Interfaces;
 using AGDAR.Models.DTO;
+using AGDAR.Repositories;
 
 namespace AGDAR.Controllers
 {
@@ -15,16 +16,19 @@ namespace AGDAR.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly ProductCategoryRepository _productCategoryRepository;
 
-        public ProductsController(IProductService productService, ICategoryService categoryService)
+        public ProductsController(IProductService productService, ICategoryService categoryService, ProductCategoryRepository productCategoryRepository )
         {
             _productService = productService;
             _categoryService = categoryService;
+            _productCategoryRepository = productCategoryRepository;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
+
             List<ProductDto> products = _productService.GetAll();
             if(products != null)
             {
@@ -54,8 +58,13 @@ namespace AGDAR.Controllers
         //// GET: Products/Create
         public IActionResult Create()
         {
-            var categories = _categoryService.GetAll().ToList(); // Wywołanie metody, która pobiera dostępne kategorie
-            ViewData["Categories"] = new SelectList(categories, "Id", "Name");
+            List<SelectListItem> categories = new List<SelectListItem>();
+
+            foreach(var c in _categoryService.GetAll().ToList())
+            {
+                categories.Add(new SelectListItem() { Text = c.Name, Value = c.Name });
+            }
+            ViewData["Kategoria"] = categories;
             return View();
         }
 
@@ -63,7 +72,7 @@ namespace AGDAR.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Brand,StateId,Categories,Img")] CreateProductDto product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Brand,StateId,CategoriesId,Img")] CreateProductDto product)
         {
 
                 _productService.Create(product);

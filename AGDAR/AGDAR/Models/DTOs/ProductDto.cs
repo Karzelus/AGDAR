@@ -1,4 +1,6 @@
-﻿namespace AGDAR.Models.DTO
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace AGDAR.Models.DTO
 {
     public class ProductDto
     {
@@ -9,7 +11,7 @@
         public string Brand { get; set; }
         public int StateId { get; set; }
         public string Img { get; set; }
-        public List<ProductCategory>? Categories { get; set; }
+        public List<Category>? CategoriesList { get; set; } = new List<Category>();
         public List<PartProduct>? Parts { get; set; }
     }
 }
