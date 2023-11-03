@@ -139,7 +139,7 @@ body {
     justify-content: space-around;
 }
 .edit-btn {
-    width: 60px;
+    min-width: 60px;
     color: black;
     border: solid 2px #05C793;
     background-color: white;
@@ -148,6 +148,8 @@ body {
     padding: 2px;
     margin: 1px;
     text-align: -webkit-center;
+    white-space: nowrap;
+    display: inline-grid
 }
 .edit-btn:hover {
     background-color: #05C793;
@@ -163,6 +165,8 @@ body {
     padding: 2px;
     margin: 1px;
     text-align: -webkit-center;
+    white-space: nowrap;
+    display: inline-grid
 }
 .details-btn:hover {
     background-color: #4F4789;
@@ -178,6 +182,8 @@ body {
     padding: 2px;
     margin: 1px;
     text-align: -webkit-center;
+    white-space: nowrap;
+    display: inline-grid
 }
 .delete-btn:hover {
     background-color: #E11444;
@@ -301,4 +307,40 @@ body {
     color: #FFCB74;
     font-size: 20px;
     font-weight: 700;
+}
+.cart-button {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    z-index: 1;
+    padding: 20px 30px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: transparent;
+}
+.package-icon-button {
+    width: 20px;
+    height: 18px;
+    position: absolute;
+    right: 27px;
+    top: 11px;
+}
+.cart-icon-button {
+    width: 40px;
+    height: 50px;
+    right: 43px;
+}
+#products-number {
+    position: absolute;
+    right: 39px;
+    top: 12px;
+    font-size:small;
+    font-weight:600;
+    color: #2F2F2F;
+}
+.add-to-cart-button {
+    border: none;
+    background-color: #2F2F2F;
 }

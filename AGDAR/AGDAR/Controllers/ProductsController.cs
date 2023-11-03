@@ -28,7 +28,13 @@ namespace AGDAR.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            List<Category> categories = new List<Category>();
+            foreach (var c in _categoryService.GetAll().ToList())
+            {
+                categories.Add(new Category() { Name = c.Name });
+            }
 
+            ViewData["Kategoria"] = categories;
             List<ProductDto> products = _productService.GetAll();
             if(products != null)
             {
@@ -84,34 +90,28 @@ namespace AGDAR.Controllers
         //// GET: Products/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (_productService.GetAll() == null)
-            {
-                return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
-            }
+            List<SelectListItem> categories = new List<SelectListItem>();
 
-            var product = _productService.GetById(id);
-            if (product == null)
+            foreach (var c in _categoryService.GetAll().ToList())
             {
-                return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
+                categories.Add(new SelectListItem() { Text = c.Name, Value = c.Name });
             }
+            ViewData["Kategoria"] = categories;
+            var product = _productService.GetById(id);
             return View(product);
         }
 
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,Brand,StateId,Categories")] ProductDto product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,Brand,StateId,CategoriesId,Img")] ProductDto product)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var isUpdated = _productService.Update(id, product);
             if(!isUpdated)
             {
                 return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
             }
-            return View(product);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Products/Delete/5

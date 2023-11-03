@@ -1,4 +1,5 @@
-﻿using AGDAR.Models;
+﻿using AGDAR.Controllers;
+using AGDAR.Models;
 using AGDAR.Models.DTO;
 using AGDAR.Repositories;
 using AGDAR.Services.Interfaces;
@@ -23,10 +24,7 @@ namespace AGDAR.Services
         public bool Update(int id, ProductDto dto) // Update
         {
             var product = _productRepository.GetById(id);
-            if (product is null)
-            {
-                return false;
-            }
+
             product.Name = dto.Name;
             product.Price = dto.Price;
             product.Description = dto.Description;
@@ -34,7 +32,36 @@ namespace AGDAR.Services
             product.StateId = dto.StateId;
 
             _productRepository.UpdateAndSaveChanges(product);
-            return true;
+
+            var categories = _productCategoryRepository.GetAll()
+                .Where(pc=>pc.ProductId == product.Id).ToList();
+
+            foreach (var productCategory in categories)
+            {
+                _productCategoryRepository.Remove(productCategory);
+            }
+
+            _productCategoryRepository.SaveChanges();
+
+            categories = _productCategoryRepository.GetAll()
+                .Where(pc => pc.ProductId == product.Id).ToList();
+
+            foreach (var name in dto.CategoriesId)
+            {
+                var category = _categoryRepository.Find(name);
+
+                if (!categories.Any(cat => cat.CategoryId == category.Id))
+                {
+                    var productCategory = new ProductCategory()
+                    {
+                        ProductId = product.Id,
+                        CategoryId = category.Id,
+                    };
+                    _productCategoryRepository.AddAndSaveChanges(productCategory);
+                }
+ 
+            }
+                return true;
         }
         public bool Delete(int id) // Delete
         {
@@ -49,32 +76,36 @@ namespace AGDAR.Services
         public ProductDto GetById(int id)   //GetById
         {
             var product = _productRepository.GetById(id);
-            if (product is null)
-            {
-                return null;
-            }
             var productDto = _mapper.Map<ProductDto>(product);
             var productCategory = _productCategoryRepository.GetAll().Where(pc => pc.ProductId == id).ToList();
             foreach(var category in productCategory)
             {
-                    productDto.CategoriesList.Add(_categoryRepository.GetById(category.CategoryId));
+                    productDto.Categories.Add(_categoryRepository.GetById(category.CategoryId));
             }
             return productDto;
         }
 
         public List<ProductDto> GetAll() //GetAll
-        {
+        {       
             var products = _productRepository.GetAll().ToList();
             var productsDtos = _mapper.Map<List<ProductDto>>(products);
+            foreach (var product in productsDtos)
+            {
+                product.Categories = getProductCategories(product.Id);
+            }
             return productsDtos;
 
         }
-        //private List<ProductCategory> GetProductCategories(int id)
-        //{
-        //    List<ProductCategory> categoriesList = _productCategoryRepository.GetAll().ToList();
-        //    var categories = "";
-        //    return categories;
-        //}
+        private List<Category> getProductCategories(int Id)
+        {
+            var productCategories = _productCategoryRepository.GetAll().Where(pc => pc.ProductId == Id).ToList();
+            List<Category> categories = new List<Category>();
+            foreach ( var category in productCategories)
+            {
+                categories.Add(_categoryRepository.GetById(category.CategoryId));
+            }
+            return categories;
+        }
 
         public int Create(CreateProductDto dto) //Create
         {
