@@ -4,52 +4,47 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StateId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StateId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Categories)
-        </dt>
-        <dd class="col-sm-10">
-            @foreach (var category in Model.Categories)
+    <div class="d-flex" style="min-height:330px;">
+        <div class="product-details-box">
+            <div>
+                <img src=" https://localhost:7167/@Html.DisplayFor(model => model.Img)" alt="Product Image" width="300" height="300" />
+            </div>
+            <div style="padding:10px;">
+                <div class="produckt-title">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+                <div>
+                    Producent:  @Html.DisplayFor(model => model.Brand)
+                </div><br /><br />
+                <div>
+                    Kategorie:<br />
+                    @foreach (var category in Model.Categories)
+                    {
+                        @category.Name
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="product-details-price-box">
+            <div class="product-price">
+                @Html.DisplayFor(model => model.Price) zł
+            </div>
+            @if (Model.Price > 99)
             {
-            @category.Name          
+                <div class="free-delivery-details-box">
+                    Dostawa GRATIS
+                </div>
             }
-        </dd>
-    </dl>
+            <div>
+                Zamówienia po godzine 14 pakowane oraz wysyłane są nastepnego dnia roboczego
+            </div>
+        </div>
+    </div>
+    <div class="description-product-details-box">
+        OPIS<br />
+        @Html.DisplayFor(model => model.Description)
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

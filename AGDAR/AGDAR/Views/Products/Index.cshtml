@@ -11,14 +11,19 @@
 <h1>Produkty</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="createnew-btn" asp-action="Create">Create New</a>
 </p>
 <main class="d-flex">
-    <div class="w-25 filters-product-box" style="line-break: anywhere; height:400px">Tu będą filtry
+    <div class="w-25 filters-product-box" style="line-break: anywhere; height:400px">
+        <p class="produckt-title">KATEGORIE</p>
         @foreach (var category in (List<Category>)ViewData["Kategoria"])
         {
-            @category.Name
+            <div id="filter-button-@category.Name" class="filters-element fw-bold" onclick="showProducts('@category.Name')"> @category.Name</div>
         }
+        <br />
+        <p class="produckt-title">CENY</p>
+        <div id="biggest-price" class="filters-element" onclick="sortByHighestPrice()">Od najwyższej</div>
+        <div id="lowest-price" class="filters-element" onclick="sortByLowestPrice()">Od najniższej</div>
     </div>
     <div class="w-75 products-boxes" style="line-break: anywhere;">
         <button class="cart-button" onclick="AddToCartPackageDrop()">
@@ -32,69 +37,129 @@
         </button>
         @foreach (var item in Model)
         {
-            <div class="d-flex product-box @String.Join(" ", item.Categories.Select(c => c.Name))">
-                <div>
-                    <img src="@Url.Content(item.Img)" alt="Product Image" width="200" height="200" />
-                </div>
-                <div style="margin-inline-end: auto; padding-left:20px; padding-right:20px; line-break: anywhere;width:50%;overflow:hidden ">
-                    <div class="produckt-title">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </div>
-                    <div class="product-descryption">
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </div>
-                </div>
-                <div style="padding-right:20px;">
-                    <div class="product-price">
-                        @Html.DisplayFor(modelItem => item.Price) zł
-                    </div>
+            <div class="sort-products @String.Join(" ", item.Categories.Select(c => c.Name))">
+                <div class="d-flex product-box @String.Join(" ", item.Categories.Select(c => c.Name))">
                     <div>
-                        @Html.DisplayFor(modelItem => item.Brand)
+                        <img src="@Url.Content(item.Img)" alt="Product Image" width="200" height="200" />
                     </div>
-                    <div>
-                        @Html.DisplayFor(modelItem => item.StateId)
+                    <div style="margin-inline-end: auto; padding-left:20px; padding-right:20px; line-break: anywhere;width:50%;overflow:hidden ">
+                        <div class="produckt-title">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </div>
+                        <div class="product-descryption">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
                     </div>
-                    @*<div>
-                        Html.DisplayFor(modelItem => item.Categories)
+                    <div style="padding-right:20px;">
+                        <div class="product-price">
+                            @Html.DisplayFor(modelItem => item.Price) zł
+                        </div>
+                        <div>
+                            @Html.DisplayFor(modelItem => item.Brand)
+                        </div>
+                        <div>
+                            @Html.DisplayFor(modelItem => item.StateId)
+                        </div>
+                        @*<div>
+                            Html.DisplayFor(modelItem => item.Categories)
                         
-                    </div>*@
-                    @if (@context.HttpContext.Session.GetString("WorkerId") != null)
-                    {
-                        <div style="display: inline-grid; justify-items: center;">
-                            <div>
-                                <a asp-action="Edit" class="edit-btn" asp-route-id="@item.Id">Edit</a>
+                        </div>*@
+                        @*@if (@context.HttpContext.Session.GetString("WorkerId") != null)
+                        {*@
+                            <div style="display: inline-grid; justify-items: center;">
+                                <div class="w-100">
+                                    <a asp-action="Edit" class="edit-btn" asp-route-id="@item.Id">
+                                        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                            <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                                        </svg>
+                                        Edit
+                                    </a>
+                                </div>
+                                <div class="w-100">
+                                    <a asp-action="Details" class="details-btn" asp-route-id="@item.Id">
+                                        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                                        </svg>
+                                        Details
+                                    </a>
+                                </div>
+                                <div class="w-100">
+                                    <a asp-action="Delete" class="delete-btn" asp-route-id="@item.Id">
+                                        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                        </svg>
+                                        Delete
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                <a asp-action="Details" class="details-btn" asp-route-id="@item.Id">Details</a>
+                        @*} else
+                        {*@
+                            <div style="display:grid">
+                                <button class="add-to-cart-button">
+                                    <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                        <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM252 160c0 11 9 20 20 20h44v44c0 11 9 20 20 20s20-9 20-20V180h44c11 0 20-9 20-20s-9-20-20-20H356V96c0-11-9-20-20-20s-20 9-20 20v44H272c-11 0-20 9-20 20z" />
+                                    </svg>
+                                </button>
                             </div>
-                            <div>
-                                <a asp-action="Delete" class="delete-btn" asp-route-id="@item.Id">Delete</a>
-                            </div>
-                        </div>
-                    } else
-                    {
-                        <div style="display:grid">
-                            <button class="add-to-cart-button">
-                                <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                    <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM252 160c0 11 9 20 20 20h44v44c0 11 9 20 20 20s20-9 20-20V180h44c11 0 20-9 20-20s-9-20-20-20H356V96c0-11-9-20-20-20s-20 9-20 20v44H272c-11 0-20 9-20 20z" />
-                                </svg>
-                            </button>
-                        </div>
-                    }
+                       @* }*@
+                    </div>
                 </div>
             </div>
         }
      </div>
 </main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var batteryElements = document.querySelectorAll(".Battery");
-    console.log(batteryElements);
+    console.log($(".Battery"));
 
-    var package = document.getElementById(".package-icon-button");
-    console.log(package);
-    function AddToCartPackageDrop()
-    {
-        console.log("Udało się");
+    function showProducts(category) {
+        $("." + category).toggleClass("d-none");
+        $("#filter-button-" + category).toggleClass("fw-bold");
+    }
+
+    function sortByHighestPrice() {
+        var productElements = document.querySelectorAll(".sort-products");
+        var sortedProductElements = Array.from(productElements);
+
+        sortedProductElements.sort(function (a, b) {
+            var cenaA = parseFloat(a.querySelector(".product-price").textContent);
+            var cenaB = parseFloat(b.querySelector(".product-price").textContent);
+            return cenaB - cenaA;
+        });
+        productElements.forEach(function (element) {
+            element.remove();
+        });
+        var productsBox = document.querySelector(".products-boxes");
+        sortedProductElements.forEach(function (element) {
+            productsBox.appendChild(element);
+        });
+        if ($("#lowest-price").hasClass("fw-bold") == 1) {
+            $("#lowest-price").toggleClass("fw-bold");
+        }
+        $("#biggest-price").toggleClass("fw-bold");
+    }
+
+    function sortByLowestPrice() {
+        var productElements = document.querySelectorAll(".sort-products");
+        var sortedProductElements = Array.from(productElements);
+
+        sortedProductElements.sort(function (a, b) {
+            var cenaA = parseFloat(a.querySelector(".product-price").textContent);
+            var cenaB = parseFloat(b.querySelector(".product-price").textContent);
+            return cenaA - cenaB;
+        });
+        productElements.forEach(function (element) {
+            element.remove();
+        });
+        var productsBox = document.querySelector(".products-boxes");
+        sortedProductElements.forEach(function (element) {
+            productsBox.appendChild(element);
+        });
+        if ($("#biggest-price").hasClass("fw-bold") == 1) {
+            $("#biggest-price").toggleClass("fw-bold");
+        }
+        $("#lowest-price").toggleClass("fw-bold");
     }
 
 </script>
