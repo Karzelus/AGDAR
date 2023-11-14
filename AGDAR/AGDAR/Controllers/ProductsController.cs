@@ -131,11 +131,19 @@ namespace AGDAR.Controllers
             return View(product);
         }
 
-        [HttpGet]
-        private async void AddToCart(int productId, int orderId)
+        public async Task<IActionResult> AddToCart(int id)
         {
-            _productService.AddToCart(productId, orderId);
+            var orderId = HttpContext.Session.GetString("ClientOrderId");
+            int orderid = int.Parse(orderId);
+            _productService.AddToCart(id, orderid);
+            return RedirectToAction(nameof(Index));
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> AddToCart(int productId, int orderId)
+        //{
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
