@@ -88,7 +88,10 @@ namespace AGDAR.Controllers
             ViewBag.JwtToken = token;
             var client = _accountService.GetClientByEmail(dto.Email); // Załóżmy, że masz tę metodę w IAccountService
             HttpContext.Session.SetString("ClientEmail", client.Email);
+            HttpContext.Session.SetString("ClientName", client.Name);
+            HttpContext.Session.SetString("ClientOrderId", client.OrderdId.ToString());
             HttpContext.Session.SetString("ClientId", client.Id.ToString());
+
             return Redirect("/Products");
         }
 

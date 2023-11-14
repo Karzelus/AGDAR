@@ -135,6 +135,12 @@ namespace AGDAR.Models
         }
 
 
+        public DbSet<AGDAR.Models.DTO.OrderDto>? OrderDto { get; set; }
+
+
+        public DbSet<AGDAR.Models.DTO.CreateOrderDto>? CreateOrderDto { get; set; }
+
+
         //public DbSet<AGDAR.Models.DTO.WorkerDto>? WorkerDto { get; set; }
 
 

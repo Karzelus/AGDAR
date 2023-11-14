@@ -131,6 +131,12 @@ namespace AGDAR.Controllers
             return View(product);
         }
 
+        [HttpGet]
+        private async void AddToCart(int productId, int orderId)
+        {
+            _productService.AddToCart(productId, orderId);
+        }
+
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

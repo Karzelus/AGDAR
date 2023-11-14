@@ -32,6 +32,12 @@
                 </li>
             </ul>
             <ul class="d-flex list-unstyled mb-0">
+                @if (@context.HttpContext.Session.GetString("ClientId") != null)
+                {
+                    <li style="padding-right:7rem;">
+                        Witaj @context.HttpContext.Session.GetString("ClientName") (@context.HttpContext.Session.GetString("ClientId"))
+                    </li>
+                }
                 <li class="nav-item d-flex justify-content-center">
                     <img src="https://localhost:7167/images/Icons/PhoneIcon.png" width="25" height="23" />
                     <a class="nav-link text-dark nav-items-style">+48 690 978 540</a>
@@ -86,6 +92,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Parts" asp-action="Index">Parts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Order" asp-action="Index">Order</a>
                         </li>
                     </ul>
                 </div>

@@ -12,13 +12,15 @@ namespace AGDAR.Services
     {
         private readonly ProductRepository _productRepository;
         private readonly ProductCategoryRepository _productCategoryRepository;
+        private readonly OrderProductRepository _orderProductRepository;
         private readonly CategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
-        public ProductService(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, CategoryRepository categoryRepository, IMapper mapper) //Constructor
+        public ProductService(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, CategoryRepository categoryRepository, OrderProductRepository orderProductRepository , IMapper mapper) //Constructor
         {
             _productRepository = productRepository;
             _productCategoryRepository = productCategoryRepository;
             _categoryRepository = categoryRepository;
+            _orderProductRepository = orderProductRepository;
             _mapper = mapper;
         }
         public bool Update(int id, ProductDto dto) // Update
@@ -139,6 +141,17 @@ namespace AGDAR.Services
             }
             return product.Id;
         }
+
+        public void AddToCart(int productId, int orderId)
+        {
+            var orderProduct = new OrderProduct()
+            {
+                ProductId = productId,
+                OrderId = orderId,
+            };
+            _orderProductRepository.AddAndSaveChanges(orderProduct);
+        }
+
     }
 }
 

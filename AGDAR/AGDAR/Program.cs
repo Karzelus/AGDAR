@@ -67,6 +67,7 @@ builder.Services.AddScoped<RoleRepository>();
 builder.Services.AddScoped<StateRepository>();
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<ProductCategoryRepository>();
+builder.Services.AddScoped<OrderProductRepository>();
 builder.Services.AddScoped<ClientRepository>();
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<ProductRepository>();

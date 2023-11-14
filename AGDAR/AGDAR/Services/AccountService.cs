@@ -171,6 +171,7 @@ namespace AGDAR.Services
                 return null;
             }
             var clientDto = _mapper.Map<ClientDto>(client);
+            clientDto.OrderdId = client.OrderdId;   
             return clientDto;
         }
     }
