@@ -9,6 +9,7 @@ using AGDAR.Models;
 using AGDAR.Services.Interfaces;
 using AGDAR.Models.DTO;
 using AGDAR.Repositories;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AGDAR.Controllers
 {
@@ -131,12 +132,17 @@ namespace AGDAR.Controllers
             return View(product);
         }
 
-        public async Task<IActionResult> AddToCart(int id)
+        [HttpGet]
+        public IActionResult AddToCart(int productId, int orderId)
         {
-            var orderId = HttpContext.Session.GetString("ClientOrderId");
-            int orderid = int.Parse(orderId);
-            _productService.AddToCart(id, orderid);
-            return RedirectToAction(nameof(Index));
+            _productService.AddToCart(productId, orderId);
+            return View();
+        }
+        [HttpGet]
+        public IActionResult RemoveFromCart(int productId, int orderId)
+        {
+            _productService.RemoveFromCart(productId, orderId);
+            return View();
         }
 
         //[HttpPost]

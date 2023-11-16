@@ -9,11 +9,15 @@ namespace AGDAR.Services
     public class OrderService : IOrderService
     {
         private readonly OrderRepository _orderRepository;
+        private readonly ProductRepository _productRepository;
         private readonly IMapper _mapper;
-        public OrderService(OrderRepository orderRepository, IMapper mapper) //Constructor
+        private readonly OrderProductRepository _orderProductRepository;
+        public OrderService(OrderRepository orderRepository, IMapper mapper, OrderProductRepository orderProductRepository, ProductRepository productRepository) //Constructor
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+            _orderProductRepository = orderProductRepository;
+            _productRepository = productRepository;
         }
         public bool Update(int id, OrderDto dto) // Update
         {
@@ -22,7 +26,7 @@ namespace AGDAR.Services
             {
                 return false;
             }
-            order.Products = dto.Products;
+            //order.Products = dto.Products;
             order.Description = dto.Description;
             order.Price = dto.Price;
 
@@ -42,11 +46,12 @@ namespace AGDAR.Services
         public OrderDto GetById(int id)   //GetById
         {
             var order = _orderRepository.GetById(id);
-            if (order is null)
-            {
-                return null;
-            }
             var orderDto = _mapper.Map<OrderDto>(order);
+            var orderProduct = _orderProductRepository.GetAll().Where(op => op.OrderId == id).ToList();
+            foreach(var product in orderProduct)
+            {
+                orderDto.Products.Add(_productRepository.GetById(product.ProductId));
+            }
             return orderDto;
         }
 

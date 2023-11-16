@@ -10,5 +10,6 @@ namespace AGDAR.Services.Interfaces
         List<ProductDto> GetAll();
         ProductDto GetById(int id);
         void AddToCart(int productId,int orderId);
+        void RemoveFromCart(int productId,int orderId);
     }
 }

@@ -5,6 +5,7 @@ using AGDAR.Repositories;
 using AGDAR.Services.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Versioning;
 
 namespace AGDAR.Services
 {
@@ -150,6 +151,17 @@ namespace AGDAR.Services
                 OrderId = orderId,
             };
             _orderProductRepository.AddAndSaveChanges(orderProduct);
+        }
+
+        public void RemoveFromCart(int productId, int orderId)
+        {
+            var cartProduct = _orderProductRepository
+                .GetAll().First(op => op.ProductId == productId && op.OrderId == orderId);
+            if(cartProduct != null) 
+            { 
+            _orderProductRepository.RemoveByIdAndSaveChanges(cartProduct.Id);
+            
+            }
         }
 
     }

@@ -339,7 +339,7 @@ body {
 
 .cart-button {
     position: fixed;
-    top: 130px;
+    top: 100px;
     right: 20px;
     z-index: 1;
     padding: 20px 20px;
@@ -351,9 +351,9 @@ body {
     opacity: 0.6;
 }
 
-    .cart-button:hover {
-        opacity: 1;
-    }
+.cart-button:hover {
+    opacity: 1;
+}
 
 .package-icon-button {
     width: 20px;
@@ -434,3 +434,4 @@ body {
     fill: #ffcb74;
     margin: 4px;
 }
+

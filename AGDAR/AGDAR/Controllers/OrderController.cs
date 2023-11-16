@@ -4,6 +4,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using AGDAR.Services.Interfaces;
 using AGDAR.Services;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using AGDAR.Repositories;
 
 namespace AGDAR.Controllers
 {
@@ -11,9 +13,13 @@ namespace AGDAR.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService) // Konstruktor
+        private readonly IProductService _productService;
+        private readonly OrderProductRepository _orderProductRepository;
+        public OrderController(IOrderService orderService, IProductService productService, OrderProductRepository orderProductRepository ) // Konstruktor
         {
             _orderService = orderService;
+            _productService = productService;
+            _orderProductRepository = orderProductRepository;
         }
 
         // GET: Orders
@@ -129,6 +135,9 @@ namespace AGDAR.Controllers
         {
             return (_orderService.GetAll()?.Any(o => o.Id == id)).GetValueOrDefault();
         }
+
+
+
 
         //[HttpPut("{id}")]
         //public ActionResult Update([FromBody] OrderDto dto, [FromRoute] int id) //Edit
