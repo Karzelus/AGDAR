@@ -22,9 +22,10 @@ namespace AGDAR.Services
         private readonly IPasswordHasher<Worker> _passwordHasherWorker;
         private readonly IPasswordHasher<Client> _passwordHasherClient;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly OrderRepository _orderRepository;
         private readonly IMapper _mapper;
 
-        public AccountService(AGDARDbContext context, IMapper mapper, WorkerRepository workerRepository, ClientRepository clientRepository, IPasswordHasher<Worker> passwordHasherWorker, IPasswordHasher<Client> passwordHasherClient, AuthenticationSettings authenticationSettings)
+        public AccountService(AGDARDbContext context, OrderRepository orderRepository, IMapper mapper, WorkerRepository workerRepository, ClientRepository clientRepository, IPasswordHasher<Worker> passwordHasherWorker, IPasswordHasher<Client> passwordHasherClient, AuthenticationSettings authenticationSettings)
         {
             _context = context;
             _workerRepository = workerRepository;
@@ -32,6 +33,7 @@ namespace AGDAR.Services
             _passwordHasherWorker = passwordHasherWorker;
             _passwordHasherClient = passwordHasherClient;
             _authenticationSettings = authenticationSettings;
+            _orderRepository = orderRepository;
             _mapper = mapper;
         }
         public void RegisterClient(ClientDto dto) //Rejestracja Klienta
@@ -41,11 +43,20 @@ namespace AGDAR.Services
                 Email = dto.Email,
                 Name = dto.Name,
                 SeckondName = dto.SeckondName,
-                DateOfBirth = dto.DateOfBirth
+                DateOfBirth = dto.DateOfBirth,
             };
             var hashedPassword = _passwordHasherClient.HashPassword(newClient, dto.Password);
             newClient.Password = hashedPassword;
-            _clientRepository.AddAndSaveChanges(newClient);
+           
+            _clientRepository.AddAndSaveChanges(newClient);//Zapisujemy do bazy danych aby dostać Id
+            var newOrder = new Order()
+            {
+                Price = 0,
+                Description = "",
+                ClientId = newClient.Id
+            };
+            _orderRepository.AddAndSaveChanges(newOrder);//Zapisujemy żeby dostać OrderId
+            _clientRepository.AddOrderId(newClient.Id, newOrder.Id);
         }
         public void RegisterWorker(WorkerDto dto) //Rejestracja Pracownika
         {

@@ -11,6 +11,7 @@ using AGDAR.Services;
 using AGDAR.Services.Interfaces;
 using AGDAR.Models.DTOs;
 using Microsoft.AspNetCore.Http;
+using AGDAR.Repositories;
 
 namespace AGDAR.Controllers
 {
@@ -18,11 +19,13 @@ namespace AGDAR.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly OrderRepository _orderRepositry;
 
-        public AccountController(IAccountService accountService, IHttpContextAccessor httpContextAccessor)
+        public AccountController(IAccountService accountService, IHttpContextAccessor httpContextAccessor, OrderRepository orderRepository)
         {
             _accountService = accountService;
             _httpContextAccessor = httpContextAccessor;
+            _orderRepositry = orderRepository;
         }
         // GET: Account/CreateClient
         public IActionResult CreateClient()
