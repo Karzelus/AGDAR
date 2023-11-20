@@ -15,11 +15,15 @@ namespace AGDAR.Controllers
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
         private readonly OrderProductRepository _orderProductRepository;
-        public OrderController(IOrderService orderService, IProductService productService, OrderProductRepository orderProductRepository ) // Konstruktor
+        private readonly OrderHistoryRepository _orderHistoryRepositroy;
+        private readonly IClientService _clientService;
+        public OrderController(IOrderService orderService, IProductService productService, IClientService clientService ,OrderProductRepository orderProductRepository, OrderHistoryRepository orderHistoryRepository ) // Konstruktor
         {
             _orderService = orderService;
             _productService = productService;
             _orderProductRepository = orderProductRepository;
+            _orderHistoryRepositroy = orderHistoryRepository;
+            _clientService = clientService;
         }
 
         // GET: Orders
@@ -50,6 +54,50 @@ namespace AGDAR.Controllers
 
             return View(order);
         }
+
+        public async Task<IActionResult> CompleteOrder(int id)
+        {
+            if (_orderService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Order'  is null.");
+            }
+
+            var order = _orderService.GetById(id);
+            if (order == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Order'  is null.");
+            }
+
+            return View(order);
+        }
+
+        public async Task<IActionResult> EndOrder(int orderId)
+        {
+            var order = _orderService.GetById(orderId);
+            var client = _clientService.GetById(order.ClientId.GetValueOrDefault());
+           
+            var orderHistory = new OrderHistory
+            {
+                OrderId = order.Id,
+                ClientId = order.ClientId,
+                ClientName = client.Name + " " + client.SeckondName,
+                Price = order.Price,
+                OrderEndDate = DateTime.Now
+            };
+            _orderHistoryRepositroy.AddAndSaveChanges(orderHistory); //Tworzymy rekord w zakończonych zamówieniach  
+            var newOrder = new CreateOrderDto
+            {
+                Description = "",
+                Price = 0,
+                ClientId = client.Id
+            };
+            int newOrderId = _orderService.Create(newOrder); //Dajemy nowe zamówienie do tabeli zamówienia i dla użytkonika
+       
+            client.OrderdId = newOrderId;
+            _clientService.Update(client.Id,client);
+            return Redirect("/Products");
+        }
+
 
         //// GET: Order/Create
         public IActionResult Create()

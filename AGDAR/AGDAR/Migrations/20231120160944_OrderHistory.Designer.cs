@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGDAR.Migrations
 {
     [DbContext(typeof(AGDARDbContext))]
-    [Migration("20230821173639_Init")]
-    partial class Init
+    [Migration("20231120160944_OrderHistory")]
+    partial class OrderHistory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,12 +38,7 @@ namespace AGDAR.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Categories");
                 });
@@ -69,7 +64,7 @@ namespace AGDAR.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int>("OrderdId")
+                    b.Property<int?>("OrderdId")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
@@ -111,6 +106,35 @@ namespace AGDAR.Migrations
                         .IsUnique();
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("AGDAR.Models.OrderHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderHistory");
                 });
 
             modelBuilder.Entity("AGDAR.Models.OrderProduct", b =>
@@ -196,6 +220,10 @@ namespace AGDAR.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Img")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -305,13 +333,6 @@ namespace AGDAR.Migrations
                     b.ToTable("Workers");
                 });
 
-            modelBuilder.Entity("AGDAR.Models.Category", b =>
-                {
-                    b.HasOne("AGDAR.Models.Product", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("AGDAR.Models.Order", b =>
                 {
                     b.HasOne("AGDAR.Models.Client", null)
@@ -384,11 +405,6 @@ namespace AGDAR.Migrations
             modelBuilder.Entity("AGDAR.Models.Part", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.Product", b =>
-                {
-                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,12 +18,16 @@ namespace AGDAR.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly ProductCategoryRepository _productCategoryRepository;
+        private readonly OrderProductRepository _orderProductRepository;
+        private readonly OrderRepository _orderRepository;
 
-        public ProductsController(IProductService productService, ICategoryService categoryService, ProductCategoryRepository productCategoryRepository )
+        public ProductsController(IProductService productService, ICategoryService categoryService, ProductCategoryRepository productCategoryRepository, OrderRepository orderRepository ,OrderProductRepository orderProductRepository )
         {
             _productService = productService;
             _categoryService = categoryService;
             _productCategoryRepository = productCategoryRepository;
+            _orderProductRepository = orderProductRepository;
+            _orderRepository = orderRepository;
         }
 
         // GET: Products
@@ -136,12 +140,22 @@ namespace AGDAR.Controllers
         public IActionResult AddToCart(int productId, int orderId)
         {
             _productService.AddToCart(productId, orderId);
+            var product = _productService.GetById(productId);
+            var order = _orderRepository.GetById(orderId);
+            order.Price += product.Price;
+            _orderRepository.UpdateAndSaveChanges(order);
+
+            _categoryService.GetById(orderId);
             return View();
         }
         [HttpGet]
         public IActionResult RemoveFromCart(int productId, int orderId)
         {
             _productService.RemoveFromCart(productId, orderId);
+            var product = _productService.GetById(productId);
+            var order = _orderRepository.GetById(orderId);
+            order.Price -= product.Price;
+            _orderRepository.UpdateAndSaveChanges(order);
             return View();
         }
 

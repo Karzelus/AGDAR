@@ -9,6 +9,7 @@ namespace AGDAR.Models.DTO
         public double Price { get; set; }
         public List<Product>? Products { get; set; } = new List<Product>();
         public List<SelectListItem> ProductsList { get; set; }
+        public int? ClientId { get; set; }
         public string[] ProductsId { get; set; }
     }
 }

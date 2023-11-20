@@ -66,8 +66,7 @@ namespace AGDAR.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeckondName")
                         .IsRequired()
@@ -103,6 +102,35 @@ namespace AGDAR.Migrations
                         .IsUnique();
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("AGDAR.Models.OrderHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderHistory");
                 });
 
             modelBuilder.Entity("AGDAR.Models.OrderProduct", b =>
@@ -213,18 +241,19 @@ namespace AGDAR.Migrations
 
             modelBuilder.Entity("AGDAR.Models.ProductCategory", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("ProductCategory");
                 });
@@ -244,6 +273,43 @@ namespace AGDAR.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("AGDAR.Models.ServiceProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClientEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientNote")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("WorkerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WorkerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkerNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceProduct");
                 });
 
             modelBuilder.Entity("AGDAR.Models.State", b =>
@@ -347,25 +413,6 @@ namespace AGDAR.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("AGDAR.Models.ProductCategory", b =>
-                {
-                    b.HasOne("AGDAR.Models.Category", "Category")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AGDAR.Models.Product", "Product")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("AGDAR.Models.Worker", b =>
                 {
                     b.HasOne("AGDAR.Models.Role", "Role")
@@ -375,11 +422,6 @@ namespace AGDAR.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.Category", b =>
-                {
-                    b.Navigation("ProductCategories");
                 });
 
             modelBuilder.Entity("AGDAR.Models.Client", b =>
@@ -396,11 +438,6 @@ namespace AGDAR.Migrations
             modelBuilder.Entity("AGDAR.Models.Part", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.Product", b =>
-                {
-                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dawid\\Desktop\\Dawid Inżynierka najnowsze zmiany\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
+    "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dawid\\Desktop\\Dawid Inżynierka najnowsze zmiany\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
+    "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\Dawid Inżynierka najnowsze zmiany\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "projectName": "AGDAR",
-        "projectPath": "C:\\Users\\Dawid\\Desktop\\Dawid Inżynierka najnowsze zmiany\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectPath": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dawid\\Desktop\\Dawid Inżynierka najnowsze zmiany\\AGDAR\\AGDAR\\AGDAR\\obj\\",
+        "outputPath": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -74,6 +74,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.16, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

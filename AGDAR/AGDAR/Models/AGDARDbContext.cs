@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using AGDAR.Models.DTO;
+using AGDAR.Models;
 
 namespace AGDAR.Models
 {
@@ -18,6 +19,8 @@ namespace AGDAR.Models
         public DbSet<State> States { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<OrderHistory> OrderHistory { get; set; }
+        public DbSet<ServiceProduct> ServiceProduct { get; set; }
 
         public void AddEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {
@@ -110,8 +113,7 @@ namespace AGDAR.Models
                 .IsRequired();
             modelBuilder.Entity<Client>()
                 .Property(c => c.Password)
-                .IsRequired()
-                .HasMaxLength(20);
+                .IsRequired();
             modelBuilder.Entity<Client>()
                 .Property(c => c.DateOfBirth)
                 .IsRequired();
@@ -133,6 +135,9 @@ namespace AGDAR.Models
                 .HasForeignKey(pc => pc.PartId);
 
         }
+
+
+        //public DbSet<AGDAR.Models.OrderHistory>? OrderHistory { get; set; }
 
 
         //public DbSet<AGDAR.Models.DTO.OrderDto>? OrderDto { get; set; }

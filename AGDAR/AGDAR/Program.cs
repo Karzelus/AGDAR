@@ -58,6 +58,8 @@ builder.Services.AddScoped<IPartService, PartService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IStateService, StateService>();
+builder.Services.AddScoped<IOrderHistoryService, OrderHistoryService>();
+builder.Services.AddScoped<IServiceProductService, ServiceProductService>();
 builder.Services.AddScoped<IValidator<WorkerDto>, RegisterWorkerDtoValidator>();
 builder.Services.AddScoped<IPasswordHasher<Worker>, PasswordHasher<Worker>>();
 builder.Services.AddScoped<IPasswordHasher<Client>, PasswordHasher<Client>>();
@@ -72,6 +74,8 @@ builder.Services.AddScoped<ClientRepository>();
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<WorkerRepository>();
+builder.Services.AddScoped<OrderHistoryRepository>();
+builder.Services.AddScoped<ServiceProductRepository>();
 
 // Mapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
