@@ -1,6 +1,7 @@
 using AGDAR;
 using AGDAR.Models;
 using AGDAR.Models.DTO;
+using AGDAR.Models.Status;
 using AGDAR.Models.Validators;
 using AGDAR.Repositories;
 using AGDAR.Seeder;
@@ -63,6 +64,8 @@ builder.Services.AddScoped<IServiceProductService, ServiceProductService>();
 builder.Services.AddScoped<IValidator<WorkerDto>, RegisterWorkerDtoValidator>();
 builder.Services.AddScoped<IPasswordHasher<Worker>, PasswordHasher<Worker>>();
 builder.Services.AddScoped<IPasswordHasher<Client>, PasswordHasher<Client>>();
+
+builder.Services.AddSingleton<Status>();
 
 //Repositories
 builder.Services.AddScoped<RoleRepository>();

@@ -10,5 +10,7 @@
         public int? WorkerId { get; set; }
         public string? WorkerName { get; set; }
         public string? WorkerNote { get; set; }
+        public double? Price { get; set; }
+        public int? Status { get; set; }
     }
 }

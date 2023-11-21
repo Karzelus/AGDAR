@@ -144,6 +144,8 @@
                                 Order
                             </a>
                         </li>
+                        @if (@context.HttpContext.Session.GetString("ClientId") != null || @context.HttpContext.Session.GetString("WorkerId") != null)
+                        {
                         <li class="nav-item navbar-btn">
                             <a class="nav-link text-light" asp-area="" asp-controller="ServiceProduct" asp-action="Index">
                                 <svg class="btn-icon" style="padding-bottom:2px;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -151,7 +153,8 @@
                                 </svg>
                                 Serwis
                             </a>
-                        </li>
+                        </li>                          
+                        }
                     </ul>
                 </div>
             </div>

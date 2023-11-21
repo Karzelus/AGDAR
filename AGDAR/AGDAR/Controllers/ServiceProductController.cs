@@ -3,15 +3,18 @@ using AGDAR.Models.DTOs;
 using AGDAR.Services;
 using AGDAR.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using AGDAR.Models.Status;
 
 namespace AGDAR.Controllers
 {
     public class ServiceProductController : Controller
     {
         private readonly IServiceProductService _serviceProductService;
-        public ServiceProductController(IServiceProductService serviceProductService)
+        private readonly IWorkerService _workerService;
+        public ServiceProductController(IServiceProductService serviceProductService, IWorkerService workerService)
         {
             _serviceProductService = serviceProductService;
+            _workerService = workerService;
         }
 
         // GET: ServiceProduct
@@ -20,6 +23,7 @@ namespace AGDAR.Controllers
             List<ServiceProduct> serviceProduct = _serviceProductService.GetAll();
             if (serviceProduct != null)
             {
+                Status statusService = new Status();
                 return View(serviceProduct);
             }
             else
@@ -59,6 +63,7 @@ namespace AGDAR.Controllers
             }
             return View(serviceProductDto);
         }
+
         public async Task<IActionResult> Edit(int id)
         {
             if (_serviceProductService.GetAll() == null)
@@ -73,8 +78,7 @@ namespace AGDAR.Controllers
             }
             return View(serviceProduct);
         }
-
-        //// POST: OrderHistory/Edit/5
+        //// POST: ServiceProduct/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,ClientEmail,Name,ClientNote,WorkerId,WorkerName,WorkerNote")] ServiceProduct serviceProduct)
@@ -90,6 +94,32 @@ namespace AGDAR.Controllers
                 return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
             }
             return View(serviceProduct);
+        }
+
+        public async Task<IActionResult> TakeReport(int id)
+        {
+            if (_serviceProductService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+
+            var serviceProduct = _serviceProductService.GetById(id);
+            if (serviceProduct == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+            return View(serviceProduct);
+        }
+        //// POST: ServiceProduct/TakeReport/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TakeReport(int id,int workerId, [Bind("Id,ClientId,ClientEmail,Name,ClientNote,WorkerId,WorkerName,WorkerNote")] ServiceProduct serviceProduct)
+        {
+            var worker = _workerService.GetById(workerId);
+            serviceProduct.WorkerName = worker.Name + " " + worker.SeckondName;
+            _serviceProductService.Update(id, serviceProduct);
+
+            return RedirectToAction(nameof(Index));
         }
         //// GET: OrderHistory/Delete/5
         public async Task<IActionResult> Delete(int id)

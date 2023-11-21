@@ -71,6 +71,7 @@ namespace AGDAR.Services
             newServiceProduct.ClientNote = serviceProduct.ClientNote;
             newServiceProduct.ClientId = client.Id;
             newServiceProduct.ClientEmail = client.Email;
+            newServiceProduct.Status = 0;
             _serviceProductRepository.AddAndSaveChanges(newServiceProduct);
 
 

@@ -284,7 +284,6 @@ namespace AGDAR.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClientEmail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ClientId")
@@ -297,6 +296,12 @@ namespace AGDAR.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
 
                     b.Property<int?>("WorkerId")
                         .HasColumnType("int");

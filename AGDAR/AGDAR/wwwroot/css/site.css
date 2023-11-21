@@ -490,3 +490,21 @@ body {
 .navbar-btn:hover{
     opacity:0.6;
 }
+
+.service-container {
+    width: 600px;
+    min-height:300px;
+    height:auto;
+    margin: auto;
+    -webkit-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 16px -9px rgba(66, 68, 90, 1);
+    border-radius: 4px;
+    padding: 10px;
+}
+.service-details-label{
+    font-weight:700;
+}
+.service-details-value{
+    
+}
