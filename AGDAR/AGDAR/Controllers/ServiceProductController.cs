@@ -117,10 +117,87 @@ namespace AGDAR.Controllers
         {
             var worker = _workerService.GetById(workerId);
             serviceProduct.WorkerName = worker.Name + " " + worker.SeckondName;
+            serviceProduct.Status = 1;
             _serviceProductService.Update(id, serviceProduct);
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Valuation(int id)
+        {
+            if (_serviceProductService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+
+            var serviceProduct = _serviceProductService.GetById(id);
+            if (serviceProduct == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+            return View(serviceProduct);
+        }
+        //// POST: ServiceProduct/Valuation/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Valuation(int id, int workerId, [Bind("Id,ClientId,ClientEmail,Name,ClientNote,WorkerId,WorkerName,WorkerNote,Price")] ServiceProduct serviceProduct)
+        {
+            serviceProduct.Status = 2;
+            _serviceProductService.Update(id, serviceProduct);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> AcceptPrice(int id)
+        {
+            if (_serviceProductService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+
+            var serviceProduct = _serviceProductService.GetById(id);
+            if (serviceProduct == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+            return View(serviceProduct);
+        }
+        //// POST: ServiceProduct/AcceptPrice/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AcceptPrice(int id, int workerId, [Bind("Id,ClientId,ClientEmail,Name,ClientNote,WorkerId,WorkerName,WorkerNote,Price")] ServiceProduct serviceProduct)
+        {
+            serviceProduct.Status = 3;
+            _serviceProductService.Update(id, serviceProduct);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Finish(int id)
+        {
+            if (_serviceProductService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+
+            var serviceProduct = _serviceProductService.GetById(id);
+            if (serviceProduct == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.ServiceProduct'  is null.");
+            }
+            return View(serviceProduct);
+        }
+        //// POST: ServiceProduct/TakeReport/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Finish(int id, int workerId, [Bind("Id,ClientId,ClientEmail,Name,ClientNote,WorkerId,WorkerName,WorkerNote,Price,FinalNote")] ServiceProduct serviceProduct)
+        {
+            serviceProduct.Status = 4;
+            _serviceProductService.Update(id, serviceProduct);
+
+            return RedirectToAction(nameof(Index));
+        }
+
         //// GET: OrderHistory/Delete/5
         public async Task<IActionResult> Delete(int id)
         {

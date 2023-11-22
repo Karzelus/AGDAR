@@ -13,9 +13,9 @@
                 case 2:
                     return "Wycenione";
                 case 3:
-                    return "Odrzucone";
-                case 4:
                     return "Zaakceptowane";
+                case 4:
+                    return "Ukończone";
                 default:
                     return "Nieznany Status";
             }

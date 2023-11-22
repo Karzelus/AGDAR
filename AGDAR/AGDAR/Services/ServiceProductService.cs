@@ -30,6 +30,9 @@ namespace AGDAR.Services
             serviceProductToUpdate.WorkerId = serviceProd.WorkerId;
             serviceProductToUpdate.WorkerName = serviceProd.WorkerName;
             serviceProductToUpdate.WorkerNote = serviceProd.WorkerNote;
+            serviceProductToUpdate.Status = serviceProd.Status;
+            serviceProductToUpdate.Price = serviceProd.Price;
+            serviceProductToUpdate.FinalNote = serviceProd.FinalNote;
 
             _serviceProductRepository.UpdateAndSaveChanges(serviceProductToUpdate);
             return true;
