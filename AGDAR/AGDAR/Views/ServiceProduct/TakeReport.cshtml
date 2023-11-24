@@ -20,7 +20,7 @@
         <form asp-action="TakeReport">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="ClientId" class="control-label"></label>
                 <input asp-for="ClientId" class="form-control" />
                 <span asp-validation-for="ClientId" class="text-danger"></span>
@@ -35,7 +35,7 @@
                 <input asp-for="ClientNote" class="form-control" />
                 <span asp-validation-for="ClientNote" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="ClientEmail" class="control-label"></label>
                 <input asp-for="ClientEmail" class="form-control" />
                 <span asp-validation-for="ClientEmail" class="text-danger"></span>

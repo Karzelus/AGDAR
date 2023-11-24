@@ -138,6 +138,7 @@ body {
     border-color: #FFCB74;
     border-style: solid;
     color: #000000;
+    table-layout: fixed
 }
 
 .admin-table td, .admin-table tr {
@@ -427,7 +428,7 @@ body {
     background-color: #2F2F2F;
     width: auto;
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
     border:none;
     text-decoration: none;
     color: #FFCB74;
@@ -507,4 +508,9 @@ body {
 }
 .service-details-value{
     
+}
+.service-table-cells-overflow {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
 }

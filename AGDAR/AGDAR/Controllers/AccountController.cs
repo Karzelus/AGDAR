@@ -95,6 +95,7 @@ namespace AGDAR.Controllers
             HttpContext.Session.SetString("ClientName", client.Name);
             HttpContext.Session.SetString("ClientOrderId", client.OrderdId.ToString());
             HttpContext.Session.SetString("ClientId", client.Id.ToString());
+            
 
             return Redirect("/Products");
         }
