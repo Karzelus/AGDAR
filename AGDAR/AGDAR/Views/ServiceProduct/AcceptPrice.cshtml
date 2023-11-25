@@ -4,68 +4,119 @@
     ViewData["Title"] = "AcceptPrice";
 }
 
-<h1>AcceptPrice</h1>
-
-<h4>ServiceProduct</h4>
+<h3>Zaakceptuj wycenę specjalisty</h3>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AcceptPrice">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div hidden class="form-group">
-                <label asp-for="ClientId" class="control-label"></label>
-                <input asp-for="ClientId" class="form-control" />
-                <span asp-validation-for="ClientId" class="text-danger"></span>
+<div class="service-container">
+    <form asp-action="AcceptPrice" style="display: grid;align-content: space-between;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div hidden class="form-group">
+            <label asp-for="ClientId" class="control-label"></label>
+            <input asp-for="ClientId" class="form-control" />
+            <span asp-validation-for="ClientId" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="ClientEmail" class="control-label"></label>
+            <input asp-for="ClientEmail" class="form-control" />
+            <span asp-validation-for="ClientEmail" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="d-flex">
+                <div class="service-details-label">
+                    Nazwa Narzędzia:
+                </div>
+                <div class="service-details-value ps-3">
+                    @Model.Name
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ClientEmail" class="control-label"></label>
-                <input asp-for="ClientEmail" class="form-control" />
-                <span asp-validation-for="ClientEmail" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="ClientNote" class="control-label"></label>
+            <input asp-for="ClientNote" class="form-control" />
+            <span asp-validation-for="ClientNote" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div>
+                <div class="service-details-label">
+                    Opis wady:
+                </div>
+                <div class="service-details-value">
+                    @Model.ClientNote
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+        </div> <br /><br /><br />
+        <div hidden class="form-group">
+            <label asp-for="WorkerId" class="control-label"></label>
+            <input asp-for="WorkerId" class="form-control" />
+            <span asp-validation-for="WorkerId" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="WorkerName" class="control-label"></label>
+            <input asp-for="WorkerName" class="form-control" />
+            <span asp-validation-for="WorkerName" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <div class="d-flex">
+                <div class="service-details-label">
+                    Imie specjalisty:
+                </div>
+                <div class="service-details-value">
+                    @Model.WorkerName
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ClientNote" class="control-label"></label>
-                <input asp-for="ClientNote" class="form-control" />
-                <span asp-validation-for="ClientNote" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="WorkerNote" class="control-label"></label>
+            <input asp-for="WorkerNote" class="form-control" />
+            <span asp-validation-for="WorkerNote" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div>
+                <div class="service-details-label">
+                    Opis wady:
+                </div>
+                <div class="service-details-value">
+                    @Model.WorkerNote
+                </div>
             </div>
-            <div hidden class="form-group">
-                <label asp-for="WorkerId" class="control-label"></label>
-                <input asp-for="WorkerId" class="form-control" />
-                <span asp-validation-for="WorkerId" class="text-danger"></span>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="d-flex">
+                <div class="service-details-label">
+                    Kwota:
+                </div>
+                <div class="service-details-value">
+                    @Model.Price
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="WorkerName" class="control-label"></label>
-                <input asp-for="WorkerName" class="form-control" />
-                <span asp-validation-for="WorkerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WorkerNote" class="control-label"></label>
-                <input asp-for="WorkerNote" class="form-control" />
-                <span asp-validation-for="WorkerNote" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div hidden class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+        <div hidden class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <input asp-for="Status" class="form-control" />
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="d-flex">
+            <a class="service-btns" asp-action="Details" asp-route-id="@Model.Id">
+                <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                    <path d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z" />
+                </svg>
+                Powrót
+            </a>
+            <button type="submit" class="service-btns">
+                Ta cena mi odpowiada
+            </button>
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
