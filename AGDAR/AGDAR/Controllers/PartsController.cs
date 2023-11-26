@@ -59,7 +59,7 @@ namespace AGDAR.Controllers
         //// POST: Parts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price")] PartDto part)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Type,ToolType")] PartDto part)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace AGDAR.Controllers
         //// POST: Parts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price")] PartDto part)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Type,ToolType")] PartDto part)
         {
             if (!ModelState.IsValid)
             {
@@ -103,6 +103,7 @@ namespace AGDAR.Controllers
             }
             return View(part);
         }
+
 
         //// GET: Parts/Delete/5
         public async Task<IActionResult> Delete(int id)

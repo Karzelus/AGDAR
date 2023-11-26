@@ -11,12 +11,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <h1>Produkty</h1>
-@if (@context.HttpContext.Session.GetString("WorkerId") != null)
-{
-    <p>
-        <a class="createnew-btn" asp-action="Create">Create New</a>
-    </p>
-}
 <main class="d-flex">
     <div class="w-25 filters-product-box" style="line-break: anywhere; height:400px; margin-top:20px;">
         <p class="produckt-title">KATEGORIE</p>

@@ -25,6 +25,8 @@ namespace AGDAR.Services
             part.Name = dto.Name;
             part.Description = dto.Description;
             part.Price = dto.Price;
+            part.Type = dto.Type;
+            part.ToolType = dto.ToolType;
 
             _dbContext.SaveChanges();
             return true;

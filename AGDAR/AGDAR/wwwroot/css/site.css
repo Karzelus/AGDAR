@@ -514,3 +514,9 @@ body {
     text-wrap: nowrap;
     text-overflow: ellipsis;
 }
+.service-notes-input {
+    height: 120px !important;
+}
+.service-small-input{
+
+}

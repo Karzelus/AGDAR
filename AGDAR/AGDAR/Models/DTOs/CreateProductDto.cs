@@ -15,8 +15,8 @@ namespace AGDAR.Models.DTO
         public string Brand { get; set; }
         public int StateId { get; set; }
         public string Img { get; set; }
-        public List<SelectListItem> CategoriesList { get; set; }
-        public string[] CategoriesId { get; set; }
-        public List<int>? PartsIds { get; set; }
+        public List<SelectListItem>? CategoriesList { get; set; }
+        public string[]? CategoriesId { get; set; }
+        public int? Type { get; set; }
     }
 }

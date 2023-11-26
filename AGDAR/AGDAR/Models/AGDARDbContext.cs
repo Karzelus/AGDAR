@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using AGDAR.Models.DTO;
 using AGDAR.Models;
+using AGDAR.Models.DTOs;
 
 namespace AGDAR.Models
 {
@@ -19,6 +20,7 @@ namespace AGDAR.Models
         public DbSet<State> States { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<PartProduct> PartProduct { get; set; }
         public DbSet<OrderHistory> OrderHistory { get; set; }
         public DbSet<ServiceProduct> ServiceProduct { get; set; }
 
@@ -127,14 +129,16 @@ namespace AGDAR.Models
                 .WithMany(c => c.Products)
                 .HasForeignKey(pc => pc.OrderId);
 
-            modelBuilder.Entity<PartProduct>()
-                .HasKey(t => t.Id);
-            modelBuilder.Entity<PartProduct>()
-                .HasOne(c => c.Part)
-                .WithMany(c => c.Products)
-                .HasForeignKey(pc => pc.PartId);
-
         }
+
+
+        //public DbSet<AGDAR.Models.DTOs.CreateServiceProductDto>? CreateServiceProductDto { get; set; }
+
+
+        //public DbSet<AGDAR.Models.DTOs.CreateCustomProductDto>? CreateCustomProductDto { get; set; }
+
+
+        //public DbSet<AGDAR.Models.DTO.PartDto>? PartDto { get; set; }
 
 
         //public DbSet<AGDAR.Models.OrderHistory>? OrderHistory { get; set; }

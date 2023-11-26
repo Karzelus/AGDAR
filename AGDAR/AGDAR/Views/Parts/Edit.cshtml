@@ -29,6 +29,37 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control" id="parts">
+                    <option value="0">Wybierz opcję</option>
+                    <option value="1">Głowica</option>
+                    <option value="2">Rączka</option>
+                    <option value="3">Bateria</option>
+                    <option value="4">Ładowarka</option>
+                    <option value="5">Przekładnia</option>
+                    <option value="6">Łożysko</option>
+                    <option value="7">Wyłącznik bezpieczeństwa</option>
+                    <option value="8">Uchwyt</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToolType" class="control-label"></label>
+                <select asp-for="ToolType" class="form-control" id="parts">
+                    <option value="0">Wybierz opcję</option>
+                    <option value="1">Wiertarka</option>
+                    <option value="2">Wkrętarka</option>
+                    <option value="3">Szlifierka</option>
+                    <option value="4">Frezarka</option>
+                    <option value="5">Piła</option>
+                    <option value="6">Kosiarka</option>
+                    <option value="7">Piła tarczowa</option>
+                    <option value="8">Wiertnica</option>
+                    <option value="9">Piła szablasta</option>
+                </select>
+                <span asp-validation-for="ToolType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

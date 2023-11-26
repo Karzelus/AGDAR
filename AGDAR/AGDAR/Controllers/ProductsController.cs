@@ -10,6 +10,7 @@ using AGDAR.Services.Interfaces;
 using AGDAR.Models.DTO;
 using AGDAR.Repositories;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using AGDAR.Models.DTOs;
 
 namespace AGDAR.Controllers
 {
@@ -17,17 +18,31 @@ namespace AGDAR.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly IPartService _partService;
         private readonly ProductCategoryRepository _productCategoryRepository;
         private readonly OrderProductRepository _orderProductRepository;
         private readonly OrderRepository _orderRepository;
 
-        public ProductsController(IProductService productService, ICategoryService categoryService, ProductCategoryRepository productCategoryRepository, OrderRepository orderRepository ,OrderProductRepository orderProductRepository )
+        public ProductsController(IProductService productService, ICategoryService categoryService, IPartService partService, ProductCategoryRepository productCategoryRepository, OrderRepository orderRepository ,OrderProductRepository orderProductRepository )
         {
             _productService = productService;
             _categoryService = categoryService;
             _productCategoryRepository = productCategoryRepository;
             _orderProductRepository = orderProductRepository;
             _orderRepository = orderRepository;
+            _partService = partService;
+        }
+
+        // GET: Products/All
+        public async Task<IActionResult> All()
+        {
+            List<Product> products = _productService.GetAllAdmin();
+            if (products != null)
+            {
+                return View(products);
+            }
+            else
+                return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
         }
 
         // GET: Products
@@ -89,6 +104,32 @@ namespace AGDAR.Controllers
                 _productService.Create(product);
                 //await _productService.Save();
                 return RedirectToAction(nameof(Index));
+
+        }
+
+        //// GET: Products/CreateCustomProduct
+        public IActionResult CreateCustomProduct()
+        {
+            List<SelectListItem> parts = new List<SelectListItem>();
+
+            foreach (var c in _partService.GetAll().ToList())
+            {
+                parts.Add(new SelectListItem() { Text = c.Name, Value = c.Name });
+            }
+            ViewData["Parts"] = parts;
+            return View();
+        }
+
+        // POST: Products/CreateCustomProduct
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> CreateCustomProduct([Bind("Id,Name,Description,Type,PartsId")] CreateCustomProductDto product)
+        {
+
+            _productService.CreateCustomProduct(product);
+            //await _productService.Save();
+            return RedirectToAction(nameof(Index));
 
         }
 

@@ -43,7 +43,7 @@
         <div class="form-group">
             <div>
                 <div class="service-details-label">
-                    Opis wady:
+                    Opis wady przez klienta:
                 </div>
                 <div class="service-details-value">
                     @Model.ClientNote
@@ -60,7 +60,8 @@
             <input asp-for="WorkerName" class="form-control" />
             <span asp-validation-for="WorkerName" class="text-danger"></span>
         </div>
-        <div hidden class="form-group">
+
+        <div class="form-group">
             <div class="d-flex">
                 <div class="service-details-label">
                     Imie specjalisty:
@@ -78,7 +79,7 @@
         <div class="form-group">
             <div>
                 <div class="service-details-label">
-                    Opis wady:
+                    Opis wady przez specjalistę:
                 </div>
                 <div class="service-details-value">
                     @Model.WorkerNote
@@ -93,10 +94,10 @@
         <div class="form-group">
             <div class="d-flex">
                 <div class="service-details-label">
-                    Kwota:
+                    Wycena specjalisty:
                 </div>
                 <div class="service-details-value">
-                    @Model.Price
+                    @Model.Price zł
                 </div>
             </div>
         </div>

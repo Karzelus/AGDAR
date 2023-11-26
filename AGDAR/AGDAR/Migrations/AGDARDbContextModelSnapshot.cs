@@ -175,6 +175,12 @@ namespace AGDAR.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int>("ToolType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Parts");
@@ -195,10 +201,6 @@ namespace AGDAR.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PartId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("PartProduct");
                 });
@@ -232,6 +234,9 @@ namespace AGDAR.Migrations
                         .HasColumnType("float");
 
                     b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -402,25 +407,6 @@ namespace AGDAR.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("AGDAR.Models.PartProduct", b =>
-                {
-                    b.HasOne("AGDAR.Models.Part", "Part")
-                        .WithMany("Products")
-                        .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AGDAR.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Part");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("AGDAR.Models.Worker", b =>
                 {
                     b.HasOne("AGDAR.Models.Role", "Role")
@@ -439,11 +425,6 @@ namespace AGDAR.Migrations
                 });
 
             modelBuilder.Entity("AGDAR.Models.Order", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("AGDAR.Models.Part", b =>
                 {
                     b.Navigation("Products");
                 });

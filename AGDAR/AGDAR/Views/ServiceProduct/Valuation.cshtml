@@ -41,15 +41,15 @@
                 <input asp-for="WorkerName" class="form-control" />
                 <span asp-validation-for="WorkerName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="WorkerNote" class="control-label"></label>
-                <input asp-for="WorkerNote" class="form-control" />
-                <span asp-validation-for="WorkerNote" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+            <div class="form-group d-grid">
+                Wycena:
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group d-grid">
+                Opis wady przez specjalistę:
+                <textarea asp-for="WorkerNote" class="form-control service-notes-input" ></textarea>
+                <span asp-validation-for="WorkerNote" class="text-danger"></span>
             </div>
             <div hidden class="form-group">
                 <label asp-for="Status" class="control-label"></label>

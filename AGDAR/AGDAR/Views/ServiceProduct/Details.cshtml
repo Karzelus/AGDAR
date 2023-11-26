@@ -24,7 +24,7 @@
             </div>
             <div>
                 <div class="service-details-label">
-                    Opis wady:
+                    Opis wady przez klienta:
                 </div>
                 <div class="service-details-value">
                     @Html.DisplayFor(model => model.ClientNote)
@@ -67,9 +67,9 @@
             {
             <div>
                 <div class="service-details-label">
-                    Opis napraw przez specjalistę:
+                    Ostatnia notatka specjalistę:
                 </div>
-                <div class="service-details-value">
+                <div class="service-details-value" style="overflow-wrap:anywhere">
                     @Html.DisplayFor(model => model.FinalNote)
                 </div>
             </div>

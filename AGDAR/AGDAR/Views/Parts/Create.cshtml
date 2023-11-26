@@ -9,7 +9,7 @@
 <h4>Part</h4>
 <hr />
 <div class="row justify-content-center">
-    <div class="login-container">
+    <div class="login-container h-auto">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -27,6 +27,38 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control" id="parts">
+                    <option value="0">Wybierz opcję</option>
+                    <option value="1">Głowica</option>
+                    <option value="2">Rączka</option>
+                    <option value="3">Bateria</option>
+                    <option value="4">Ładowarka</option>
+                    <option value="5">Przekładnia</option>
+                    <option value="6">Łożysko</option>
+                    <option value="7">Wyłącznik bezpieczeństwa</option>
+                    <option value="8">Uchwyt</option>
+                    <option value="9">Silnik</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToolType" class="control-label"></label>
+                <select asp-for="ToolType" class="form-control" id="parts">
+                    <option value="0">Wybierz opcję</option>
+                    <option value="1">Wiertarka</option>
+                    <option value="2">Wkrętarka</option>
+                    <option value="3">Szlifierka</option>
+                    <option value="4">Frezarka</option>
+                    <option value="5">Piła</option>
+                    <option value="6">Kosiarka</option>
+                    <option value="7">Piła tarczowa</option>
+                    <option value="8">Wiertnica</option>
+                    <option value="9">Piła szablasta</option>
+                </select>
+                <span asp-validation-for="ToolType" class="text-danger"></span>
+            </div>
             <div class="d-flex justify-content-between">
                 <a asp-action="Index" class="create-btns h-25 m-2">Powrót</a>
                 <div class="form-group float-end ">
@@ -35,10 +67,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    
 </div>
 
 @section Scripts {

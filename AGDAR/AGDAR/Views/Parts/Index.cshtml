@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<AGDAR.Models.DTO.PartDto>
-
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor context;
+@using AGDAR.Models.Status;
+@inject PartType partType;
+@inject ProductType productType;
 @{
     ViewData["Title"] = "Index";
 }
@@ -21,6 +25,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToolType)
+            </th>
             <th width="15%">Action</th>
         </tr>
     </thead>
@@ -35,6 +45,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @PartType.GetType(item.Type)
+            </td>
+            <td>
+                @ProductType.GetType(item.ToolType)
             </td>
             <td>
                 <a asp-action="Edit" class="edit-btn" style="justify-content: center;" asp-route-id="@item.Id">

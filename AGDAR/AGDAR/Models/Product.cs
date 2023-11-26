@@ -9,5 +9,6 @@
         public string Brand { get; set; }
         public int StateId { get; set; }
         public string Img { get; set; }
+        public int? Type { get; set; }
     }
 }

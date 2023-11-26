@@ -1,6 +1,7 @@
 ﻿using AGDAR.Controllers;
 using AGDAR.Models;
 using AGDAR.Models.DTO;
+using AGDAR.Models.DTOs;
 using AGDAR.Repositories;
 using AGDAR.Services.Interfaces;
 using AutoMapper;
@@ -13,16 +14,20 @@ namespace AGDAR.Services
     {
         private readonly ProductRepository _productRepository;
         private readonly ProductCategoryRepository _productCategoryRepository;
+        private readonly PartProductRepository _partProductRepository;
         private readonly OrderProductRepository _orderProductRepository;
         private readonly CategoryRepository _categoryRepository;
+        private readonly PartRepository _partRepository;
         private readonly IMapper _mapper;
-        public ProductService(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, CategoryRepository categoryRepository, OrderProductRepository orderProductRepository , IMapper mapper) //Constructor
+        public ProductService(ProductRepository productRepository, PartProductRepository partProductRepository, ProductCategoryRepository productCategoryRepository, PartRepository partRepository, CategoryRepository categoryRepository, OrderProductRepository orderProductRepository , IMapper mapper) //Constructor
         {
             _productRepository = productRepository;
             _productCategoryRepository = productCategoryRepository;
             _categoryRepository = categoryRepository;
             _orderProductRepository = orderProductRepository;
+            _partRepository = partRepository;
             _mapper = mapper;
+            _partProductRepository = partProductRepository;
         }
         public bool Update(int id, ProductDto dto) // Update
         {
@@ -99,6 +104,13 @@ namespace AGDAR.Services
             return productsDtos;
 
         }
+
+        public List<Product> GetAllAdmin() //GetAll
+        {
+            var products = _productRepository.GetAll().ToList();
+            return products;
+
+        }
         private List<Category> getProductCategories(int Id)
         {
             var productCategories = _productCategoryRepository.GetAll().Where(pc => pc.ProductId == Id).ToList();
@@ -108,6 +120,36 @@ namespace AGDAR.Services
                 categories.Add(_categoryRepository.GetById(category.CategoryId));
             }
             return categories;
+        }        
+        public int CreateCustomProduct(CreateCustomProductDto dto) //Create
+        {
+            //var product = _mapper.Map<Product>(dto);
+            var product = new Product()
+            {
+                Name = dto.Name,
+                Price = 0,
+                Description = dto.Description,
+                Brand = "Custom",
+                StateId = 0,
+                Img = "Custom",
+                Type = dto.Type,
+            };
+
+            _productRepository.AddAndSaveChanges(product);
+
+
+            foreach (var name in dto.PartsId)
+            {
+                var part = _partRepository.Find(name);
+                var partProduct = new PartProduct()
+                {
+                    ProductId = product.Id,
+                    PartId = part.Id,
+                };
+
+                _partProductRepository.AddAndSaveChanges(partProduct);
+            }
+            return product.Id;
         }
 
         public int Create(CreateProductDto dto) //Create
