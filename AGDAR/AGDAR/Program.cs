@@ -68,6 +68,7 @@ builder.Services.AddScoped<IPasswordHasher<Client>, PasswordHasher<Client>>();
 builder.Services.AddSingleton<Status>();
 builder.Services.AddSingleton<PartType>();
 builder.Services.AddSingleton<ProductType>();
+builder.Services.AddSingleton<ProductState>();
 
 
 //Repositories

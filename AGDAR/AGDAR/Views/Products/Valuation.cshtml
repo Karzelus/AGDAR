@@ -1,0 +1,125 @@
+﻿@model AGDAR.Models.DTOs.CreateCustomProductDto
+@using AGDAR.Models.Status;
+@inject ProductType productType;
+@inject PartType partType;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Wycena konfiguracji klienta</h3>
+<hr />
+<div class="service-container">
+    <div style="min-height:330px; height:auto;">
+        <div class="d-flex">
+            <div class="service-details-label">
+                Nazwa:
+            </div>
+            <div class="service-details-value ps-2">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div><br />
+        <div>
+            <div class="service-details-label">
+                Opis:
+            </div>
+            <div class="service-details-value" style="overflow-wrap: break-word;">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div><br />
+        <div>
+            <div class="service-details-label">
+                Spis części:
+            </div>
+            <div class="service-details-value">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nazwa
+                            </th>
+                            <th>
+                                Typ
+                            </th>
+                            <th>
+                                Cena
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var part in Model.Parts)
+                        {
+                            <tr>
+                                <td>
+                                    @part.Name
+                                </td>
+                                <td>
+                                    @PartType.GetType(part.Type)
+                                </td>
+                                <td>
+                                    @part.Price
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td style="font-weight:700">
+                                Suma
+                            </td>
+                            <td style="background-color:dimgray">
+                            </td>
+                            <td>
+                                @ViewData["Cena"]
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div><br />
+        <div class="d-flex">
+            <div class="service-details-label">
+                Typ:
+            </div>
+            <div class="service-details-value ps-2">
+                @ProductType.GetType(Model.Type)
+            </div>
+        </div>
+        <form asp-action="Valuation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div hidden class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div style="font-weight:700">
+                    Kwota na jaką wyceniasz narzędzie:
+                </div>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="d-flex">
+                <a class="service-btns" asp-action="All">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                        <path d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z" />
+                    </svg>
+                    Powrót
+                </a>
+                <button type="submit" class="service-btns">
+                    Wyceń
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -89,7 +89,7 @@ namespace AGDAR.Controllers
         //// POST: Workers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SeckondName,Email,DateOfBirth,Password,RoleId")] WorkerDto worker)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SeckondName,Email,DateOfBirth,RoleId")] WorkerDto worker)
         {
             if (!ModelState.IsValid)
             {

@@ -1,5 +1,7 @@
 ﻿@model AGDAR.Models.DTOs.CreateCustomProductDto
-
+@using AGDAR.Models.Status;
+@inject ProductType productType;
+@inject PartType partType;
 @{
     ViewData["Title"] = "CreateCustomProduct";
 }
@@ -8,9 +10,9 @@
 
 <h4>Product</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateCustomProduct">
+<form asp-action="CreateCustomProduct">
+    <div class="d-flex justify-content-between">
+        <div class="w-25">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -18,19 +20,9 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                Dodaj opis: <br />
+                <textarea class="service-notes-input" asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartsId" class="control-label"></label>
-                <select asp-for="PartsId" class="form-control" multiple>
-                    @foreach (var category in (List<SelectListItem>)ViewData["Parts"])
-                    {
-                        <option value="@category.Value">@category.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="PartsId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Type" class="control-label"></label>
@@ -48,12 +40,826 @@
                 </select>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <div class="w-75 ps-5">
+            <div id="Wiertarka" class="parts-group d-none">
+                <h6>Wybierz części do swojej wiertarki</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) =="Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>                            
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
-        </form>
+
+            <div id="Wkrętarka" class="parts-group d-none">
+                <h6>Wybierz części do swojej wkrętarki</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Szlifierka" class="parts-group d-none">
+                <h6>Wybierz części do swojej szlifierki</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Przekładnia
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Frezarka" class="parts-group d-none">
+                <h6>Wybierz części do swojej frezarki</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Włącznik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Piła" class="parts-group d-none">
+                <h6>Wybierz części do swojej piły</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Włącznik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Kosiarka" class="parts-group d-none">
+                <h6>Wybierz części do swojej kosiarki</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Włącznik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Piła_tarczowa" class="parts-group d-none">
+                <h6>Wybierz części do swojej piły tarczowej</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Włącznik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Wiertnica" class="parts-group d-none">
+                <h6>Wybierz części do swojej wiertnicy</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Włącznik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Piła_szablasta" class="parts-group d-none">
+                <h6>Wybierz części do swojej piły szablastej</h6>
+                <div style=" display: inline-flex;flex-wrap: wrap">
+                    <div class="form-group" style="width:300px">
+                        Głowica
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Głowica")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Rączka
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Rączka")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Silnik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Silnik")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Uchwyt
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Uchwyt")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Osłona
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Osłona")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="PartsId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Bateria
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Bateria")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="width:300px">
+                        Włącznik
+                        <select asp-for="PartsId" class="form-control">
+                            @foreach (var part in (List<Part>)ViewData["Parts"])
+                            {
+                                if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Przekładnia")
+                                {
+                                    <option value="@part.Name">@part.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group float-end ">
+                <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+            </div>
+        </div>
     </div>
-</div>
+</form>
 
 <div>
     <a asp-action="Index">Back to List</a>
@@ -64,3 +870,27 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        const partsGroups = $(".parts-group");
+        partsGroups.addClass("d-none");
+
+        $('#parts').change(function () {
+            partsGroups.addClass("d-none");
+            var selectedOption = $(this).find('option:selected').text();
+            if(selectedOption == "Piła szablasta")
+            {
+                $('#Piła_szablasta').removeClass("d-none");
+            } 
+            else if (selectedOption == "Piła tarczowa")
+            {
+                $('#Piła_tarczowa').removeClass("d-none");
+            }else{
+                $('#' + selectedOption).removeClass("d-none");
+            }
+            console.log(selectedOption);
+        });
+    });
+    
+</script>

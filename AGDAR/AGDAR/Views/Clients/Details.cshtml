@@ -4,35 +4,44 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Twoje konto</h1>
-
-<div class="admin-details-container m-auto">
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Imie
-        </dt>
-        <dd class = "col-sm-10 ps-5">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Nazwisko
-        </dt>
-        <dd class="col-sm-10 ps-5">
-            @Html.DisplayFor(model => model.SeckondName)
-        </dd>
-        <dt class = "col-sm-2">
-            Email
-        </dt>
-        <dd class = "col-sm-10 ps-5">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            Data urodzenia
-        </dt>
-        <dd class="col-sm-10 ps-5">
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-    </dl>
-    <a asp-action="Index" class="edit-backToList-btn">Back to List</a>
-    <a asp-action="Edit" class="edit-second-btn" asp-route-id="@Model?.Id">Edit</a>
+<h3>Dane użytkownika</h3>
+<hr />
+<div class="admin-details-container m-auto pb-3">
+    <div>
+        <div class="d-flex">
+            <div style="font-weight:700">
+                Imie:
+            </div>
+            <div class="ps-3">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div>
+        <div class="d-flex">
+            <div style="font-weight:700">
+                Nazwisko:
+            </div>
+            <div class="ps-3">
+                @Html.DisplayFor(model => model.SeckondName)
+            </div>
+        </div>
+        <div class="d-flex">
+            <div style="font-weight:700">
+                Email:
+            </div>
+            <div class="ps-3">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+        <div class="d-flex">
+            <div style="font-weight:700">
+                Data urodzenia:
+            </div>
+            <div class="ps-3">
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <a asp-action="Index" class="create-btns">Powrót</a>
+    </div>
 </div>

@@ -6,6 +6,7 @@ using AGDAR.Repositories;
 using AGDAR.Services.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using NuGet.Versioning;
 
 namespace AGDAR.Services
@@ -42,7 +43,7 @@ namespace AGDAR.Services
             _productRepository.UpdateAndSaveChanges(product);
 
             var categories = _productCategoryRepository.GetAll()
-                .Where(pc=>pc.ProductId == product.Id).ToList();
+                .Where(pc => pc.ProductId == product.Id).ToList();
 
             foreach (var productCategory in categories)
             {
@@ -67,9 +68,20 @@ namespace AGDAR.Services
                     };
                     _productCategoryRepository.AddAndSaveChanges(productCategory);
                 }
- 
+
             }
-                return true;
+            return true;
+        }
+        public bool Valuate(int id, CreateCustomProductDto dto)
+        {
+            var product = _productRepository.GetById(id);
+            product.Name = dto.Name;
+            product.Description = dto.Description;
+            product.Price = (int)dto.Price;
+            product.Brand = "Custom";
+            product.StateId = 2;
+            _productRepository.UpdateAndSaveChanges(product);
+            return true;
         }
         public bool Delete(int id) // Delete
         {
@@ -89,6 +101,18 @@ namespace AGDAR.Services
             foreach(var category in productCategory)
             {
                     productDto.Categories.Add(_categoryRepository.GetById(category.CategoryId));
+            }
+            return productDto;
+        }
+
+        public CreateCustomProductDto GetCustomById(int id) //GetCustomById
+        {
+            var product = _productRepository.GetById(id);
+            var productDto = _mapper.Map<CreateCustomProductDto>(product);
+            var productParts = _partProductRepository.GetAll().Where(pp => pp.ProductId == id).ToList();
+            foreach(var part in productParts)
+            {
+                productDto.Parts.Add(_partRepository.GetById(part.PartId));
             }
             return productDto;
         }
@@ -123,7 +147,7 @@ namespace AGDAR.Services
         }        
         public int CreateCustomProduct(CreateCustomProductDto dto) //Create
         {
-            //var product = _mapper.Map<Product>(dto);
+            
             var product = new Product()
             {
                 Name = dto.Name,
@@ -132,9 +156,8 @@ namespace AGDAR.Services
                 Brand = "Custom",
                 StateId = 0,
                 Img = "Custom",
-                Type = dto.Type,
+                Type = dto.Type,             
             };
-
             _productRepository.AddAndSaveChanges(product);
 
 
@@ -149,6 +172,15 @@ namespace AGDAR.Services
 
                 _partProductRepository.AddAndSaveChanges(partProduct);
             }
+            double newPrice = 0;
+            var productParts = _partProductRepository.GetAll().Where(pc => pc.ProductId == product.Id).ToList();
+            foreach (var part in productParts)
+            {
+                var newPart = _partRepository.GetById(part.PartId);
+                newPrice += newPart.Price;
+            }
+            product.Price = newPrice;
+            _productRepository.UpdateAndSaveChanges(product);
             return product.Id;
         }
 

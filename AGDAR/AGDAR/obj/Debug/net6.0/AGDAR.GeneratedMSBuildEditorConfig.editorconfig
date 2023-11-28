@@ -176,6 +176,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlQ3VzdG9tUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Dawid/Desktop/DawidInżynierka2/AGDAR/AGDAR/AGDAR/Views/Products/CustomDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3VzdG9tRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Dawid/Desktop/DawidInżynierka2/AGDAR/AGDAR/AGDAR/Views/Products/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -190,6 +194,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Dawid/Desktop/DawidInżynierka2/AGDAR/AGDAR/AGDAR/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dawid/Desktop/DawidInżynierka2/AGDAR/AGDAR/AGDAR/Views/Products/Valuation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcVmFsdWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dawid/Desktop/DawidInżynierka2/AGDAR/AGDAR/AGDAR/Views/ServiceProduct/AcceptPrice.cshtml]

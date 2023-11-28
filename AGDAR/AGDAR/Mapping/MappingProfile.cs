@@ -1,5 +1,6 @@
 ﻿using AGDAR.Models;
 using AGDAR.Models.DTO;
+using AGDAR.Models.DTOs;
 using AutoMapper;
 
 namespace AGDAR.Mapping
@@ -10,6 +11,8 @@ namespace AGDAR.Mapping
         {
             CreateMap<Product, ProductDto>();
             CreateMap<CreateProductDto, Product>();
+            CreateMap<CreateCustomProductDto, Product>();
+            CreateMap<Product, CreateCustomProductDto>();
 
             CreateMap<Worker, WorkerDto>()
                 .ForMember(m => m.Role, c => c.MapFrom(s => s.Role.Name));

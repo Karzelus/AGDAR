@@ -11,6 +11,7 @@ using AGDAR.Models.DTO;
 using AGDAR.Repositories;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using AGDAR.Models.DTOs;
+using System.IO;
 
 namespace AGDAR.Controllers
 {
@@ -110,11 +111,18 @@ namespace AGDAR.Controllers
         //// GET: Products/CreateCustomProduct
         public IActionResult CreateCustomProduct()
         {
-            List<SelectListItem> parts = new List<SelectListItem>();
+            //List<SelectListItem> parts = new List<SelectListItem>();
+            List<Part> parts = new List<Part>();
 
             foreach (var c in _partService.GetAll().ToList())
             {
-                parts.Add(new SelectListItem() { Text = c.Name, Value = c.Name });
+                var part = new Part
+                {
+                    Name = c.Name,
+                    Type = c.Type, // Ustaw typ dla każdej części
+                    ToolType = c.ToolType // Ustaw ToolType dla każdej części
+                };
+                parts.Add(part);
             }
             ViewData["Parts"] = parts;
             return View();
@@ -131,6 +139,55 @@ namespace AGDAR.Controllers
             //await _productService.Save();
             return RedirectToAction(nameof(Index));
 
+        }
+
+        // GET: Products/Details/5
+        public async Task<IActionResult> CustomDetails(int id)
+        {
+            if (_productService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
+            }
+
+            var product = _productService.GetCustomById(id);
+            double price = 0;
+            foreach(var part in product.Parts)
+            {
+                price+= part.Price;
+            }
+            ViewData["Price"] = price;
+
+            if (product == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
+            }
+
+            return View(product);
+        }
+
+        public async Task<IActionResult> Valuation(int id)
+        {
+            List<SelectListItem> parts = new List<SelectListItem>();
+            var product = _productService.GetCustomById(id);
+            double price = 0;
+            foreach (var part in product.Parts)
+            {
+                price += part.Price;
+            }
+            ViewData["Cena"] = price;
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Valuation(int id, [Bind("Id,Name,Price,Description")] CreateCustomProductDto product)
+        {
+            var isUpdated = _productService.Valuate(id, product);
+            if (!isUpdated)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         //// GET: Products/Edit/5

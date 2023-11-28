@@ -3,6 +3,7 @@ using AGDAR.Models;
 using AutoMapper;
 using AGDAR.Services.Interfaces;
 using AGDAR.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AGDAR.Services
 {
@@ -59,6 +60,12 @@ namespace AGDAR.Services
         {
             var clients = _clientRepository.GetAll().ToList();
             var clientsDtos = _mapper.Map<List<ClientDto>>(clients);
+            int num = 0;
+            foreach(var client in clientsDtos)
+            {
+                client.OrderdId = clients[num].OrderdId;
+                num++;
+            }
             return clientsDtos;
         }
 

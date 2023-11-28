@@ -27,7 +27,7 @@ namespace AGDAR.Services
             worker.SeckondName = dto.SeckondName;
             worker.Email = dto.Email;
             worker.DateOfBirth = dto.DateOfBirth;
-            worker.Password = dto.Password;
+            worker.Password = worker.Password;
             worker.RoleId = dto.RoleId;
             
 
