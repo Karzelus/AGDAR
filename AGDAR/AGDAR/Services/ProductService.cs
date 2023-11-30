@@ -38,7 +38,7 @@ namespace AGDAR.Services
             product.Price = dto.Price;
             product.Description = dto.Description;
             product.Brand = dto.Brand;
-            product.StateId = dto.StateId;
+            product.ClientId = dto.StateId;
 
             _productRepository.UpdateAndSaveChanges(product);
 
@@ -79,7 +79,7 @@ namespace AGDAR.Services
             product.Description = dto.Description;
             product.Price = (int)dto.Price;
             product.Brand = "Custom";
-            product.StateId = 2;
+            product.ClientId = 0;
             _productRepository.UpdateAndSaveChanges(product);
             return true;
         }
@@ -132,7 +132,8 @@ namespace AGDAR.Services
         public List<Product> GetAllAdmin() //GetAll
         {
             var products = _productRepository.GetAll().ToList();
-            return products;
+            var customProducts = _mapper.Map<List<Product>>(products);
+            return customProducts;
 
         }
         private List<Category> getProductCategories(int Id)
@@ -154,9 +155,9 @@ namespace AGDAR.Services
                 Price = 0,
                 Description = dto.Description,
                 Brand = "Custom",
-                StateId = 0,
+                ClientId = dto.ClientId,
                 Img = "Custom",
-                Type = dto.Type,             
+                Type = dto.Type,              
             };
             _productRepository.AddAndSaveChanges(product);
 
@@ -187,7 +188,7 @@ namespace AGDAR.Services
         public int Create(CreateProductDto dto) //Create
         {
             var product = _mapper.Map<Product>(dto);
-
+            product.ClientId = 0;
             
             _productRepository.AddAndSaveChanges(product);
             

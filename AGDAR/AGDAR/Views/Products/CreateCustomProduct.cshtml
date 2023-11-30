@@ -2,8 +2,11 @@
 @using AGDAR.Models.Status;
 @inject ProductType productType;
 @inject PartType partType;
+@inject IHttpContextAccessor context;
 @{
     ViewData["Title"] = "CreateCustomProduct";
+    string clientId = @context.HttpContext.Session.GetString("ClientId");
+    int Id = Int32.Parse(clientId);
 }
 
 <h1>CreateCustomProduct</h1>
@@ -14,6 +17,7 @@
     <div class="d-flex justify-content-between">
         <div class="w-25">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Id" name="ClientId" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -39,6 +43,9 @@
                     <option value="9">Piła szablasta</option>
                 </select>
                 <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="mt-5">
+                <a asp-action="Index" class="create-btns mt-5">Powrót</a>
             </div>
         </div>
         <div class="w-75 ps-5">
@@ -121,6 +128,9 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+                </div>
             </div>
 
             <div id="Wkrętarka" class="parts-group d-none">
@@ -201,6 +211,9 @@
                             }
                         </select>
                     </div>
+                </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
                 </div>
             </div>
 
@@ -295,6 +308,9 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+                </div>
             </div>
 
             <div id="Frezarka" class="parts-group d-none">
@@ -387,6 +403,9 @@
                             }
                         </select>
                     </div>
+                </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
                 </div>
             </div>
 
@@ -481,6 +500,9 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+                </div>
             </div>
 
             <div id="Kosiarka" class="parts-group d-none">
@@ -573,6 +595,9 @@
                             }
                         </select>
                     </div>
+                </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
                 </div>
             </div>
 
@@ -667,6 +692,9 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+                </div>
             </div>
 
             <div id="Wiertnica" class="parts-group d-none">
@@ -759,6 +787,9 @@
                             }
                         </select>
                     </div>
+                </div>
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
                 </div>
             </div>
 
@@ -853,17 +884,15 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="form-group float-end ">
-                <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+                <div class="form-group float-end ">
+                    <input type="submit" value="Create" class="create-btns m-2" style="border:none;" />
+                </div>
             </div>
         </div>
     </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{

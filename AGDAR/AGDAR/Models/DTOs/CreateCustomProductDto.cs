@@ -17,5 +17,6 @@ namespace AGDAR.Models.DTOs
         public List<SelectListItem>? PartsList { get; set; }
         public string[]? PartsId { get; set; }
         public List<Part>? Parts { get; set; } = new List<Part>();
+        public int ClientId { get; set; }
     }
 }

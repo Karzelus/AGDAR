@@ -132,7 +132,7 @@ namespace AGDAR.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> CreateCustomProduct([Bind("Id,Name,Description,Type,PartsId")] CreateCustomProductDto product)
+        public async Task<IActionResult> CreateCustomProduct([Bind("Id,Name,Description,Type,PartsId,ClientId")] CreateCustomProductDto product)
         {
 
             _productService.CreateCustomProduct(product);

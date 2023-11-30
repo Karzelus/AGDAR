@@ -4,6 +4,7 @@ using AutoMapper;
 using AGDAR.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using AGDAR.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace AGDAR.Services
 {
@@ -11,10 +12,12 @@ namespace AGDAR.Services
     {
         private readonly WorkerRepository _workerRepository;
         private readonly IMapper _mapper;
-        public WorkerService(WorkerRepository workerRepository, IMapper mapper) //Constructor
+        private readonly IPasswordHasher<Worker> _passwordHasherWorker;
+        public WorkerService(WorkerRepository workerRepository, IMapper mapper, IPasswordHasher<Worker> passwordHasherWorker) //Constructor
         {
             _workerRepository = workerRepository;
             _mapper = mapper;
+            _passwordHasherWorker = passwordHasherWorker;
         }
         public bool Update(int id, WorkerDto dto) // Update
         {
