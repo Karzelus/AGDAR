@@ -1,22 +1,21 @@
 ﻿@model IEnumerable<AGDAR.Models.DTO.OrderDto>
-
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Wszystkie zamówienia</h3>
 
-<p>
-    <a class="createnew-btn" asp-action="Create">Create New</a>
-</p>
 <table class="admin-table">
     <thead>
         <tr>
-            <th style="width:75%" >
-                @Html.DisplayNameFor(model => model.Description)
+            <th style="width:55%" >
+                Opis
             </th>
             <th style="width:10%">
-                @Html.DisplayNameFor(model => model.Price)
+                Cena
+            </th>
+            <th style="width:20%">
+                Imię klienta
             </th>
             <th style ="width:15%"></th>
         </tr>
@@ -29,6 +28,9 @@
             </td>
             <td class="service-table-cells-overflow">
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="service-table-cells-overflow">
+                @Html.DisplayFor(modelItem => item.ClientName)
             </td>
             <td class="service-table-cells-overflow">
                 <a asp-action="Edit" class="edit-btn" style="justify-content: center;" asp-route-id="@item.Id">

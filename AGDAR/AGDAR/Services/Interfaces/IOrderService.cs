@@ -1,4 +1,5 @@
-﻿using AGDAR.Models.DTO;
+﻿using AGDAR.Models;
+using AGDAR.Models.DTO;
 
 namespace AGDAR.Services.Interfaces
 {

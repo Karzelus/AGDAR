@@ -10,14 +10,16 @@ namespace AGDAR.Services
     {
         private readonly OrderRepository _orderRepository;
         private readonly ProductRepository _productRepository;
+        private readonly ClientRepository _clientRepository;
         private readonly IMapper _mapper;
         private readonly OrderProductRepository _orderProductRepository;
-        public OrderService(OrderRepository orderRepository, IMapper mapper, OrderProductRepository orderProductRepository, ProductRepository productRepository) //Constructor
+        public OrderService(OrderRepository orderRepository,ClientRepository clientRepository, IMapper mapper, OrderProductRepository orderProductRepository, ProductRepository productRepository) //Constructor
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
             _orderProductRepository = orderProductRepository;
             _productRepository = productRepository;
+            _clientRepository = clientRepository;
         }
         public bool Update(int id, OrderDto dto) // Update
         {
@@ -59,6 +61,11 @@ namespace AGDAR.Services
         {
             var orders = _orderRepository.GetAll().ToList();
             var ordersDtos = _mapper.Map<List<OrderDto>>(orders);
+            foreach(var order in ordersDtos) 
+            {
+                var client = _clientRepository.GetById((int)order.ClientId);
+                order.ClientName = client.Name + " " + client.SeckondName;
+            }
             return ordersDtos;
 
         }
