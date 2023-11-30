@@ -156,7 +156,7 @@ namespace AGDAR.Services
                 Description = dto.Description,
                 Brand = "Custom",
                 ClientId = dto.ClientId,
-                Img = "Custom",
+                Img = "/images/C.png",
                 Type = dto.Type,              
             };
             _productRepository.AddAndSaveChanges(product);

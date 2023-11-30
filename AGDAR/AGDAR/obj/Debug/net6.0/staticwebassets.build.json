@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S3BtbLzSkw9d1YZok1lwPvtPKiB8yKyCAYN/9w4R0k8=",
+  "Hash": "KqyZHSoAu2kuIDPUgmVdhzcYDpkt2lgfWcYY/fgccng=",
   "Source": "AGDAR",
   "BasePath": "_content/AGDAR",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\C.png",
+      "SourceId": "AGDAR",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\",
+      "BasePath": "_content/AGDAR",
+      "RelativePath": "images/C.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\C.png"
     },
     {
       "Identity": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\wwwroot\\images\\Dewalt.png",
