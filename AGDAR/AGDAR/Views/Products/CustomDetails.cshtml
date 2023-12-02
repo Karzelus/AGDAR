@@ -56,7 +56,7 @@
                                 @PartType.GetType(part.Type)                             
                             </td>
                             <td>
-                                @part.Price
+                                @part.Price zł
                             </td>
                         </tr>
                     }
@@ -70,7 +70,7 @@
 
                             </td>
                             <td>
-                                @ViewData["Price"]
+                                @ViewData["Price"] zł
                             </td>
                         </tr>
                     </tfoot>
@@ -79,7 +79,7 @@
         </div><br />
         <div class="d-flex">
                 <div class="service-details-label">
-                Typ:
+                Typ narzędzia:
             </div>
             <div class="service-details-value ps-2">
                 @ProductType.GetType(Model.Type)
@@ -93,7 +93,7 @@
             </div>
             
             <div class="service-details-value ps-2">
-                @Html.DisplayFor(model => model.Price)
+                @Html.DisplayFor(model => model.Price) zł
             </div>
         </div>
         }                        

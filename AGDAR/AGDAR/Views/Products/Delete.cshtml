@@ -8,7 +8,7 @@
 <h3>Usuń produtk</h3>
 <hr/>
 <div class="row justify-content-center">
-    <div class="login-container" style="display: grid;align-content: space-between;">
+    <div class="login-container h-auto" style="display: grid;align-content: space-between;">
     @if(Model.Brand == "Custom")
     {
         <div class="d-flex">
@@ -29,7 +29,7 @@
         </div><br />
         <div class="d-flex">
                 <div class="service-details-label">
-                Typ:
+                Typ narzędzia:
             </div>
             <div class="service-details-value ps-2">
                 @ProductType.GetType((int)ViewData["Typ"])
@@ -41,12 +41,15 @@
             </div>
             
             <div class="service-details-value ps-2">
-                @Html.DisplayFor(model => model.Price)
+                @Html.DisplayFor(model => model.Price) zł
             </div>
         </div>
     }
     else
     {
+        <div class="w-100 h-100" style="text-align-last: center;">
+            <img src="@Html.DisplayFor(model => model.Img)"/>
+        </div>
           <div class="d-flex">
             <div class="service-details-label">
                 Nazwa:
@@ -64,20 +67,12 @@
             </div>
         </div><br />
         <div class="d-flex">
-                <div class="service-details-label">
-                Typ:
-            </div>
-            <div class="service-details-value ps-2">
-                @ProductType.GetType((int)ViewData["Typ"])
-            </div>
-        </div>
-        <div class="d-flex">
             <div class="service-details-label">
                 Cena:
             </div>
             
             <div class="service-details-value ps-2">
-                @Html.DisplayFor(model => model.Price)
+                @Html.DisplayFor(model => model.Price) zł
             </div>
         </div> 
     }

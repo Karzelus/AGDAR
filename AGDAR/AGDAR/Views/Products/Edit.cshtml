@@ -4,39 +4,33 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h3>Edycja narzędzia</h3>
 
-<h4>Product</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-center">
+    <div class="login-container h-auto">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                Nazwa
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                Cena
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                Opis
+                <textarea asp-for="Description" class="form-control" ></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
+                Marka
                 <input asp-for="Brand" class="form-control" />
                 <span asp-validation-for="Brand" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StateId" class="control-label"></label>
-                <input asp-for="StateId" class="form-control" />
-                <span asp-validation-for="StateId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoriesId" class="control-label"></label>
@@ -49,20 +43,20 @@
                 <span asp-validation-for="CategoriesId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Img" class="control-label"></label>
+                Zdjęcie
                 <input asp-for="Img" class="form-control" />
                 <span asp-validation-for="Img" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+             <div class="d-flex justify-content-between">
+                 <a asp-action="All" class="create-btns h-25 mt-2">Powrót</a>
+                <div class="form-group">
+                     <input type="submit" value="Zatwierdź" class="create-btns m-2" style="border:none;" />
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

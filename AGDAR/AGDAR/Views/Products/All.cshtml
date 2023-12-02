@@ -62,10 +62,7 @@
                     <th style="width:10%">
                         Marka
                     </th>
-                    <th style="width:10%">
-                        Type
-                    </th>
-                    <th style="width:15%">Action</th>
+                    <th style="width:15%"></th>
                 </tr>
             </thead>
             <tbody>
@@ -89,9 +86,6 @@
                             </td>
                             <td class="service-table-cells-overflow">
                                 @Html.DisplayFor(modelItem => item.Brand)
-                            </td>
-                            <td class="service-table-cells-overflow">
-                                @ProductType.GetType(item.Type)
                             </td>
                             <td>
                                 <a asp-action="Edit" class="edit-btn" style="justify-content: center;" asp-route-id="@item.Id">
@@ -219,7 +213,7 @@
                         Marka
                     </th>
                     <th style="width:10%">
-                        Type
+                        Typ narzędzia
                     </th>
                     <th style="width:15%"></th>
                 </tr>

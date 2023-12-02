@@ -207,14 +207,14 @@ namespace AGDAR.Controllers
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,Brand,StateId,CategoriesId,Img")] ProductDto product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,Brand,CategoriesId,Img")] ProductDto product)
         {
             var isUpdated = _productService.Update(id, product);
             if(!isUpdated)
             {
                 return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(All));
         }
 
         // GET: Products/Delete/5
