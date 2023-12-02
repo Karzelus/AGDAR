@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3JJ6EUGPl2sZ/UYWTtbJOvSdVEeqrEI65dV4HpOJtnWpj5b4cVBo9RWs6k6r3FLSoffldSgbrCqBqCR9BdChlQ==",
+  "dgSpecHash": "nFgt3FECKVRjffR4PzGK1L0DY1tlccSfwrz5HNpR/pDt1pIP2O2Xk3UyHqsBwXe2wFIGRjxVoPFJflWuqd22wQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dawid\\Desktop\\DawidInżynierka2\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+  "projectFilePath": "C:\\Users\\Dawid\\Desktop\\Praca Inżynierska 02.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dawid\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Dawid\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -70,9 +70,18 @@
                     </li>
                 }else
                 {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark nav-items-style" asp-area="" asp-route-id="@context.HttpContext.Session.GetString("ClientId")" asp-controller="Clients" asp-action="Details">Konto</a>
-                    </li>
+                    @if (@context.HttpContext.Session.GetString("ClientId") != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark nav-items-style" asp-area="" asp-route-id="@context.HttpContext.Session.GetString("ClientId")" asp-controller="Clients" asp-action="Details">Konto</a>
+                        </li>                    
+                    }
+                    @if (@context.HttpContext.Session.GetString("WorkerId") != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark nav-items-style" asp-area="" asp-route-id="@context.HttpContext.Session.GetString("WorkerId")" asp-controller="Workers" asp-action="Details">Konto</a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a class="nav-link text-dark nav-items-style" asp-area="" asp-controller="Account" asp-action="Logout">Wyloguj się</a>
                     </li>

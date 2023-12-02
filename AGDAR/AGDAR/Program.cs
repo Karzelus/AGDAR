@@ -61,9 +61,12 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IStateService, StateService>();
 builder.Services.AddScoped<IOrderHistoryService, OrderHistoryService>();
 builder.Services.AddScoped<IServiceProductService, ServiceProductService>();
-builder.Services.AddScoped<IValidator<WorkerDto>, RegisterWorkerDtoValidator>();
 builder.Services.AddScoped<IPasswordHasher<Worker>, PasswordHasher<Worker>>();
 builder.Services.AddScoped<IPasswordHasher<Client>, PasswordHasher<Client>>();
+
+//Validators
+builder.Services.AddScoped<IValidator<WorkerDto>, RegisterWorkerDtoValidator>();
+builder.Services.AddScoped<IValidator<CategoryDto>, CreateEditCategoryDtoValidator>();
 
 builder.Services.AddSingleton<Status>();
 builder.Services.AddSingleton<PartType>();

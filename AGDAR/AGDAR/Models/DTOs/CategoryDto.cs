@@ -1,4 +1,6 @@
-﻿namespace AGDAR.Models.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AGDAR.Models.DTO
 {
     public class CategoryDto
     {

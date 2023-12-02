@@ -101,7 +101,7 @@ namespace AGDAR.Controllers
             {
                 return NotFound("Entity set 'AGDARDbContext.Parts'  is null.");
             }
-            return View(part);
+            return RedirectToAction(nameof(Index));
         }
 
 

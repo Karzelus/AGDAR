@@ -9,6 +9,7 @@ using AGDAR.Models;
 using AGDAR.Services.Interfaces;
 using AGDAR.Models.DTO;
 using AGDAR.Services;
+using AGDAR.Models.Validators;
 
 namespace AGDAR.Controllers
 {
@@ -61,13 +62,23 @@ namespace AGDAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] CategoryDto category)
         {
-            if (ModelState.IsValid)
+            var validator = new CreateEditCategoryDtoValidator(); // Walidator FluentValidation
+            var validationResult = validator.Validate(category);
+
+            if (validationResult.IsValid)
             {
                 _categoryService.Create(category);
-                //await _categoryService.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            else
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+
+                return View(category);
+            }
         }
 
         //// GET: Categories/Edit/5

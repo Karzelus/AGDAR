@@ -1,60 +1,90 @@
 ﻿@model AGDAR.Models.DTO.ProductDto
-
+@using AGDAR.Models.Status;
+@inject ProductType productType;
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StateId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StateId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Categories)
-        </dt>
-        <dd class="col-sm-10">
-            @foreach (var category in Model.Categories)
-            {
-                @category.Name
-            }
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
+<h3>Usuń produtk</h3>
+<hr/>
+<div class="row justify-content-center">
+    <div class="login-container" style="display: grid;align-content: space-between;">
+    @if(Model.Brand == "Custom")
+    {
+        <div class="d-flex">
+            <div class="service-details-label">
+                Nazwa:
+            </div>
+            <div class="service-details-value ps-2">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div><br />     
+        <div>
+            <div class="service-details-label">
+                Opis: 
+            </div>
+            <div class="service-details-value" style="overflow-wrap: break-word;">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div><br />
+        <div class="d-flex">
+                <div class="service-details-label">
+                Typ:
+            </div>
+            <div class="service-details-value ps-2">
+                @ProductType.GetType((int)ViewData["Typ"])
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="service-details-label">
+                Cena:
+            </div>
+            
+            <div class="service-details-value ps-2">
+                @Html.DisplayFor(model => model.Price)
+            </div>
+        </div>
+    }
+    else
+    {
+          <div class="d-flex">
+            <div class="service-details-label">
+                Nazwa:
+            </div>
+            <div class="service-details-value ps-2">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div><br />     
+        <div>
+            <div class="service-details-label">
+                Opis: 
+            </div>
+            <div class="service-details-value" style="overflow-wrap: break-word;">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div><br />
+        <div class="d-flex">
+                <div class="service-details-label">
+                Typ:
+            </div>
+            <div class="service-details-value ps-2">
+                @ProductType.GetType((int)ViewData["Typ"])
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="service-details-label">
+                Cena:
+            </div>
+            
+            <div class="service-details-value ps-2">
+                @Html.DisplayFor(model => model.Price)
+            </div>
+        </div> 
+    }
+    <form asp-action="Delete" class="d-flex justify-content-between">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a class="create-btns" asp-action="All">Powrót</a>
+        <input type="submit" value="Usuń" class="create-btns float-end" style="border:none"/>
     </form>
+    </div>
 </div>

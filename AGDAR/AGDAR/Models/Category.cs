@@ -1,4 +1,6 @@
-﻿namespace AGDAR.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AGDAR.Models
 {
     public class Category
     {

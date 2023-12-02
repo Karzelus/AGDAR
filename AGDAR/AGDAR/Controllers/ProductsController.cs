@@ -224,7 +224,8 @@ namespace AGDAR.Controllers
             {
                 return NotFound("Entity set 'AGDARDbContext.Products'  is null.");
             }
-
+            var productCustom = _productService.GetCustomById(id);
+            ViewData["Typ"] = productCustom.Type;
             var product = _productService.GetById(id);
             if (product == null)
             {

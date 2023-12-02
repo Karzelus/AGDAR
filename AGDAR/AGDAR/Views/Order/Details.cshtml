@@ -5,8 +5,14 @@
     var orderId = @Html.DisplayFor(model => model.Id);
     int numerator = 0;
 }
-
-<h1>Twoje zakupy</h1>
+@if (@context.HttpContext.Session.GetString("ClientId") != null)
+{
+    <h3>Twoje zakupy</h3>
+}
+@if (@context.HttpContext.Session.GetString("WorkerId") != null)
+{
+    <h3>Zamówienie</h3>
+}
 
 <div>
     <hr />
