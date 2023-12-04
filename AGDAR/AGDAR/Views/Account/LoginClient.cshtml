@@ -33,7 +33,7 @@
                 <div class="d-flex">
                     <input type="checkbox" />
                     <p style="margin:1px 0px 0px 15px">Zapamiętaj mnie</p>
-                    <a href="#" style="margin-top:5px; margin-left: auto; float:right; font-size:12px; text-decoration:none; color:gray">Nie pamiętasz hasła ?</a>
+                    <a asp-controller="Mail" asp-action="ForgotPassword" style="margin-top:5px; margin-left: auto; float:right; font-size:12px; text-decoration:none; color:gray">Nie pamiętasz hasła ?</a>
                 </div>
                 <br />
                 <form asp-action="LoginClient" method="get">

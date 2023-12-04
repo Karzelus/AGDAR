@@ -13,5 +13,6 @@ namespace AGDAR.Services.Interfaces
         List<ClientDto> GetAll();
         ClientDto GetById(int id);
         Client GetClientById(int id);
+        Client GetByEmail(string email);
     }
 }

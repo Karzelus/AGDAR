@@ -520,3 +520,23 @@ body {
 .service-small-input{
 
 }
+.mails-icon {
+    fill: #ffcb74;
+    margin: 4px;
+}
+.mails-icon:hover {
+    color: #2F2F2F;
+}
+.mails-btn {
+    background-color: #2F2F2F;
+    width: auto;
+    padding: 10px;
+    text-decoration: none;
+    color: #FFCB74;
+    transition: ease-in-out 0.2s;
+    border-radius: 2px;
+    margin:10px;
+}
+.mails-btn:hover{
+    opacity:0.6;
+}

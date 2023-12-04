@@ -128,5 +128,11 @@ namespace AGDAR.Services
 
             return client.Id;
         }
+        public Client GetByEmail(string email)
+        {
+            var client = _clientRepository.GetByEmail(email);
+
+            return client;
+        }
     }
 }
