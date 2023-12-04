@@ -52,7 +52,10 @@
         }
         @if (@context.HttpContext.Session.GetString("WorkerId") != null)
         {
-            <a asp-action="Index" class="create-btns">Powrót</a>           
+            <a asp-action="Index" class="create-btns">Powrót</a>
+            <div class="mt-3">
+                <a asp-action="Edit" class="create-btns" asp-route-id="@Model.Id">Edytuj</a>
+            </div>
         }
         
     </div>

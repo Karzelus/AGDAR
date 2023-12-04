@@ -41,8 +41,13 @@
             </div>
             <div hidden class="form-group">
                Hasło
-                <input asp-for="Password" class="form-control" />
+                <input id="Password" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                Powtórz Hasło
+                <input id="ConfirmPassword" asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div hidden class="form-group">
                 <label asp-for="OrderdId" class="control-label"></label>
@@ -65,7 +70,18 @@
         </form>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var passwordInput = document.getElementById('Password');
+        var confirmPasswordInput = document.getElementById('ConfirmPassword');
 
+        confirmPasswordInput.value = passwordInput.value; // Ustawienie wartości ConfirmPassword na wartość Password
+
+        passwordInput.addEventListener('input', function () {
+            confirmPasswordInput.value = passwordInput.value; // Aktualizacja wartości ConfirmPassword w przypadku zmiany Password
+        });
+    });
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

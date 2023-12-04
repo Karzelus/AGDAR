@@ -23,6 +23,7 @@ namespace AGDAR.Models
         public DbSet<PartProduct> PartProduct { get; set; }
         public DbSet<OrderHistory> OrderHistory { get; set; }
         public DbSet<ServiceProduct> ServiceProduct { get; set; }
+        public DbSet<NewsletterEmails> NewsletterEmails { get; set; }
 
         public void AddEntity<TEntity>(TEntity entity) where TEntity : class, new()
         {
@@ -130,6 +131,9 @@ namespace AGDAR.Models
                 .HasForeignKey(pc => pc.OrderId);
 
         }
+
+
+        public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
 
 
         //public DbSet<AGDAR.Models.DTOs.CreateServiceProductDto>? CreateServiceProductDto { get; set; }

@@ -32,6 +32,16 @@
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div hidden class="form-group">
+                Hasło
+                <input id="Password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                Potwierdź hasło
+                <input id="ConfirmPassword" asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
                 <label asp-for="RoleId" class="control-label"></label>
                 <input asp-for="RoleId" class="form-control" />
                 <span asp-validation-for="RoleId" class="text-danger"></span>
@@ -50,7 +60,16 @@
         </form>
     </div>
 </div>
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var passwordInput = document.getElementById('Password');
+        var confirmPasswordInput = document.getElementById('ConfirmPassword');
+        console.log(passwordInput.value);
+        confirmPasswordInput.value = passwordInput.value;
+        console.log(confirmPasswordInput.value);
+    });
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

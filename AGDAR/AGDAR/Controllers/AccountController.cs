@@ -106,6 +106,8 @@ namespace AGDAR.Controllers
             {
                 HttpContext.Session.Remove("ClientId");
                 HttpContext.Session.Remove("ClientEmail");
+                HttpContext.Session.Remove("ClientOrderId");
+                HttpContext.Session.Remove("ClientName");
             }
             if (HttpContext.Session.GetString("WorkerId") != null)
             {
@@ -113,6 +115,6 @@ namespace AGDAR.Controllers
                 HttpContext.Session.Remove("WorkerEmail");
             }
             return Redirect("/Products");
-        }
+        }       
     }
 }

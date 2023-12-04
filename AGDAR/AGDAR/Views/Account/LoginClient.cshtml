@@ -45,21 +45,16 @@
             <h4 class="newsletter-title">NEWSLETTER</h4>
             <div class="newsletter-inputs">
                 <div class="d-flex">
-                    <input placeholder="*Podaj e-mail..." class="newsletter-input" />
-                    <input placeholder="*Podaj imię..." class="newsletter-input" />
+                    <input id="NewsletterEmail" placeholder="*Podaj e-mail..." class="newsletter-input" />
                 </div>
                 <div class="checkboxes">
                     <div class="d-flex">
-                        <input type="checkbox" class="checkbox" />
-                        <span class="checkbox-content">Akceptuję Regulamin i Politykę Prywatności *</span>
-                    </div>
-                    <div class="d-flex">
-                        <input type="checkbox" class="checkbox" />
+                        <input type="checkbox" id="checkbox_accept" class="checkbox" />
                         <div class="d-flex">
                             <span class="checkbox-content">
                                 Chcę być informowany o bieżących promocjach i otrzymywać najnowsze oferty.
                             </span>
-                            <button class="login-accept-btn" style="padding:2px; margin-left:20px;">ZAPISZ SIĘ</button>
+                            <button id="NewsletterBtn" class="login-accept-btn" style="padding:2px; margin-left:20px;" onclick="AddEmail()">ZAPISZ SIĘ</button>
                         </div>
                     </div>
                 </div>
@@ -67,3 +62,29 @@
         </div>
     </div>
 </div>
+<script>
+    $('#NewsletterBtn').prop("disabled", true)
+
+    $('#NewsletterEmail').on('input', function () {
+        var inputText = $(this).val().trim();
+        var emailPattern = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+        var checkbox_accept = $('#checkbox_accept');
+        if (emailPattern.test(emailInput) && checkbox_accept.is(':checked')) {
+            $('#NewsletterBtn').prop('disabled', false);
+        } else {
+            $('#NewsletterBtn').prop('disabled', true);
+        }
+    });
+    function AddEmail() {
+        let email = ($("#NewsletterEmail").val());
+        console.log(email);
+
+        $.ajax({
+            url: '/Mail/AddToNewsletterEmails',
+            type: 'GET',
+            data: { email: email },
+            success: function (response) {
+            },
+        });
+    }
+</script>

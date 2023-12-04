@@ -89,19 +89,15 @@ namespace AGDAR.Controllers
         //// POST: Workers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SeckondName,Email,DateOfBirth,RoleId")] WorkerDto worker)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SeckondName,Email,Password,ConfirmPassword,DateOfBirth,RoleId")] WorkerDto worker)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             var isUpdated = _workerService.Update(id, worker);
             if (!isUpdated)
             {
                 return NotFound("Entity set 'AGDARDbContext.Workers'  is null.");
             }
-            return View(worker);
+            return Redirect("/Workers/Details/" + id);
         }
 
         //// GET: Workers/Delete/5

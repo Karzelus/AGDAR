@@ -1,4 +1,5 @@
 using AGDAR;
+using AGDAR.Emails;
 using AGDAR.Models;
 using AGDAR.Models.DTO;
 using AGDAR.Models.Status;
@@ -73,6 +74,8 @@ builder.Services.AddSingleton<PartType>();
 builder.Services.AddSingleton<ProductType>();
 builder.Services.AddSingleton<ProductState>();
 
+//Maile
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 //Repositories
 builder.Services.AddScoped<RoleRepository>();
@@ -88,6 +91,7 @@ builder.Services.AddScoped<WorkerRepository>();
 builder.Services.AddScoped<OrderHistoryRepository>();
 builder.Services.AddScoped<ServiceProductRepository>();
 builder.Services.AddScoped<PartRepository>();
+builder.Services.AddScoped<NewsletterEmailsRepository>();
 
 // Mapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

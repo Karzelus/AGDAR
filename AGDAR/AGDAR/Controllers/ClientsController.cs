@@ -90,7 +90,7 @@ namespace AGDAR.Controllers
         //// POST: Clients/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SeckondName,Email,DateOfBirth,Password,OrderdId")] ClientDto client)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SeckondName,Email,DateOfBirth,Password,ConfirmPassword,OrderdId")] ClientDto client)
         {
             if (!ModelState.IsValid)
             {
@@ -100,9 +100,43 @@ namespace AGDAR.Controllers
             var isUpdated = _clientService.Update(id, client);
             if (!isUpdated)
             {
-               return NotFound("Entity set 'AGDARDbContext.Clients'  is null.");
+                return NotFound("Entity set 'AGDARDbContext.Clients'  is null.");
+            }
+            return Redirect("/Clients/Details/" + id);
+        }
+         
+        // GET: Clients/Edit/5
+        public async Task<IActionResult> ChangePassword(int id)
+        {
+            if (_clientService.GetAll() == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Clients'  is null.");
+            }
+
+            var client = _clientService.GetById(id);
+            if (client == null)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Clients'  is null.");
             }
             return View(client);
+        }
+
+        //// POST: Clients/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(int id, [Bind("Id,Name,SeckondName,Email,DateOfBirth,Password,ConfirmPassword,OrderdId")] ClientDto client)
+        {
+            if (!ModelState.IsValid)
+            {
+                return NotFound(ModelState);
+            }
+
+            var isUpdated = _clientService.ChangePassword(id, client);
+            if (!isUpdated)
+            {
+                return NotFound("Entity set 'AGDARDbContext.Clients'  is null.");
+            }
+            return Redirect("/Clients/Details/" + id);
         }
 
         //// GET: Clients/Delete/5

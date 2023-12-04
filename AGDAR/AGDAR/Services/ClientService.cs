@@ -4,6 +4,8 @@ using AutoMapper;
 using AGDAR.Services.Interfaces;
 using AGDAR.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace AGDAR.Services
 {
@@ -11,10 +13,12 @@ namespace AGDAR.Services
     {
         private readonly ClientRepository _clientRepository;
         private readonly IMapper _mapper;
-        public ClientService(ClientRepository clientRepository, IMapper mapper) //Constructor
+        private readonly IPasswordHasher<Client> _passwordHasherClient;
+        public ClientService(ClientRepository clientRepository, IMapper mapper, IPasswordHasher<Client> passwordHasherClient) //Constructor
         {
             _clientRepository = clientRepository;
             _mapper = mapper;
+            _passwordHasherClient = passwordHasherClient;
         }
 
         public bool Update(int id, ClientDto dto) // Update
@@ -30,6 +34,22 @@ namespace AGDAR.Services
             client.DateOfBirth = dto.DateOfBirth;
             client.Password = dto.Password;
             client.OrderdId = dto.OrderdId;
+
+            _clientRepository.UpdateAndSaveChanges(client);
+            return true;
+        }
+
+        public bool UpdateClient(int id, Client dto) // Update
+        {
+            var client = _clientRepository.GetById(id);
+            if (client is null)
+            {
+                return false;
+            }
+            client.Name = dto.Name;
+            client.SeckondName = dto.SeckondName;
+            client.Email = dto.Email;
+            client.DateOfBirth = dto.DateOfBirth;
 
             _clientRepository.UpdateAndSaveChanges(client);
             return true;
@@ -55,6 +75,37 @@ namespace AGDAR.Services
             var clientDto = _mapper.Map<ClientDto>(client);
             clientDto.OrderdId = client.OrderdId;
             return clientDto;
+        }
+
+        public Client GetClientById(int id)   //GetById
+        {
+            var client = _clientRepository.GetById(id);
+            if (client is null)
+            {
+                return null;
+            }
+
+            return client;
+        }
+
+        public bool ChangePassword(int id, ClientDto dto)
+        {
+            var client = _clientRepository.GetById(id);
+            if (client is null)
+            {
+                return false;
+            }
+            client.Name = dto.Name;
+            client.SeckondName = dto.SeckondName;
+            client.Email = dto.Email;
+            client.DateOfBirth = dto.DateOfBirth;
+            client.OrderdId = dto.OrderdId;
+
+            var hashedPassword = _passwordHasherClient.HashPassword(client, dto.Password);
+            client.Password = hashedPassword;
+
+            _clientRepository.UpdateAndSaveChanges(client);
+            return true;
         }
 
         public List<ClientDto> GetAll() //GetAll
