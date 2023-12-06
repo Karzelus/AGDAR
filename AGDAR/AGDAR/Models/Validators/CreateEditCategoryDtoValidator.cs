@@ -1,4 +1,5 @@
 ﻿using AGDAR.Models.DTO;
+using AGDAR.Repositories;
 using FluentValidation;
 
 namespace AGDAR.Models.Validators
@@ -7,7 +8,7 @@ namespace AGDAR.Models.Validators
     {
         public CreateEditCategoryDtoValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Nie może być puste");
+            RuleFor(x => x.Name).MinimumLength(1).WithMessage("To pole nie może być puste");
         }
     }
 }

@@ -153,19 +153,3 @@
     }
 
 </script>
-@if (@context.HttpContext.Session.GetString("WorkerId") != null)
-{
-    <div>
-        <h1>Worker id: @context.HttpContext.Session.GetString("WorkerId")</h1>
-        <h2>Worker emial: @context.HttpContext.Session.GetString("WorkerEmail")</h2>
-    </div>
-}
-@if (@context.HttpContext.Session.GetString("ClientId") != null)
-{
-    <div>
-        <h1>Client id: @context.HttpContext.Session.GetString("ClientId")</h1>
-        <h2>Client emial: @context.HttpContext.Session.GetString("ClientEmail")</h2>
-        <h2>Client name: @context.HttpContext.Session.GetString("ClientName")</h2>
-        <h2>Client OrderId: @context.HttpContext.Session.GetString("ClientOrderId")</h2>
-    </div>
-}

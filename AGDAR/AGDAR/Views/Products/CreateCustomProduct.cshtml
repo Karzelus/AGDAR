@@ -9,9 +9,8 @@
     int Id = Int32.Parse(clientId);
 }
 
-<h1>CreateCustomProduct</h1>
+<h3>Stwórz własny sprzęt</h3>
 
-<h4>Product</h4>
 <hr />
 <form asp-action="CreateCustomProduct">
     <div class="d-flex justify-content-between">
@@ -51,7 +50,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container" >
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) =="Głowica")
@@ -64,7 +63,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Rączka")
@@ -76,7 +75,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Silnik")
@@ -89,7 +88,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Uchwyt")
@@ -101,7 +100,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Osłona")
@@ -114,7 +113,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertarka" && PartType.GetType(part.Type) == "Bateria")
@@ -135,7 +134,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Głowica")
@@ -148,7 +147,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Rączka")
@@ -160,7 +159,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Silnik")
@@ -173,7 +172,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Uchwyt")
@@ -185,7 +184,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Osłona")
@@ -198,7 +197,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wkrętarka" && PartType.GetType(part.Type) == "Bateria")
@@ -219,7 +218,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Głowica")
@@ -232,7 +231,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Rączka")
@@ -244,7 +243,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Silnik")
@@ -257,7 +256,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Uchwyt")
@@ -269,7 +268,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Osłona")
@@ -282,7 +281,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Bateria")
@@ -294,7 +293,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Przekładnia
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Szlifierka" && PartType.GetType(part.Type) == "Przekładnia")
@@ -315,7 +314,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Głowica")
@@ -328,7 +327,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Rączka")
@@ -340,7 +339,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Silnik")
@@ -353,7 +352,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Uchwyt")
@@ -365,7 +364,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Osłona")
@@ -378,7 +377,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Bateria")
@@ -390,7 +389,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Włącznik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Frezarka" && PartType.GetType(part.Type) == "Przekładnia")
@@ -411,7 +410,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Głowica")
@@ -424,7 +423,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Rączka")
@@ -436,7 +435,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Silnik")
@@ -449,7 +448,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Uchwyt")
@@ -461,7 +460,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Osłona")
@@ -474,7 +473,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Bateria")
@@ -486,7 +485,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Włącznik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła" && PartType.GetType(part.Type) == "Przekładnia")
@@ -507,7 +506,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Głowica")
@@ -520,7 +519,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Rączka")
@@ -532,7 +531,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Silnik")
@@ -545,7 +544,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Uchwyt")
@@ -557,7 +556,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Osłona")
@@ -570,7 +569,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Bateria")
@@ -582,7 +581,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Włącznik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Kosiarka" && PartType.GetType(part.Type) == "Przekładnia")
@@ -603,7 +602,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Głowica")
@@ -616,7 +615,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Rączka")
@@ -628,7 +627,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Silnik")
@@ -641,7 +640,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Uchwyt")
@@ -653,7 +652,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Osłona")
@@ -666,7 +665,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Bateria")
@@ -678,7 +677,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Włącznik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła tarczowa" && PartType.GetType(part.Type) == "Przekładnia")
@@ -699,7 +698,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Głowica")
@@ -712,7 +711,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Rączka")
@@ -724,7 +723,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Silnik")
@@ -737,7 +736,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Uchwyt")
@@ -749,7 +748,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Osłona")
@@ -762,7 +761,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Bateria")
@@ -774,7 +773,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Włącznik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Wiertnica" && PartType.GetType(part.Type) == "Przekładnia")
@@ -795,7 +794,7 @@
                 <div style=" display: inline-flex;flex-wrap: wrap">
                     <div class="form-group" style="width:300px">
                         Głowica
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Głowica")
@@ -808,7 +807,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Rączka
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Rączka")
@@ -820,7 +819,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Silnik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Silnik")
@@ -833,7 +832,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Uchwyt
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Uchwyt")
@@ -845,7 +844,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Osłona
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Osłona")
@@ -858,7 +857,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Bateria
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Bateria")
@@ -870,7 +869,7 @@
                     </div>
                     <div class="form-group" style="width:300px">
                         Włącznik
-                        <select asp-for="PartsId" class="form-control">
+                        <select asp-for="PartsId" class="form-control part-container">
                             @foreach (var part in (List<Part>)ViewData["Parts"])
                             {
                                 if (ProductType.GetType(part.ToolType) == "Piła szablasta" && PartType.GetType(part.Type) == "Przekładnia")

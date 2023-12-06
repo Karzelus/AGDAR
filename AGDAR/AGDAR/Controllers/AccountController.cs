@@ -12,6 +12,7 @@ using AGDAR.Services.Interfaces;
 using AGDAR.Models.DTOs;
 using Microsoft.AspNetCore.Http;
 using AGDAR.Repositories;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AGDAR.Controllers
 {
@@ -69,13 +70,22 @@ namespace AGDAR.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Login([Bind("Email,Password")] LoginDto dto)
-        {         
-            //string token = _accountService.GenerateJwt(dto);
-            string token = _accountService.GenerateJwt(HttpContext, dto);
-            ViewBag.JwtToken = token;
-            var worker = _accountService.GetWorkerByEmail(dto.Email); // Załóżmy, że masz tę metodę w IAccountService
-            HttpContext.Session.SetString("WorkerEmail", worker.Email);
-            HttpContext.Session.SetString("WorkerId", worker.Id.ToString());
+        {
+            var worker = _accountService.GetWorkerByEmail(dto.Email);
+            if (worker != null)
+            {
+                string token = _accountService.GenerateJwt(HttpContext, dto);
+                ViewBag.JwtToken = token;
+                HttpContext.Session.SetString("WorkerEmail", worker.Email);
+                HttpContext.Session.SetString("WorkerId", worker.Id.ToString());
+            }
+            else{
+                var workerDto = new ClientDto();
+                workerDto.Email = dto.Email;
+                workerDto.Password = dto.Password;
+                ModelState.AddModelError("Email", "Podany adres email nie istnieje");
+                return View(workerDto);
+            }
             return Redirect("/Products");
         }
 
@@ -86,17 +96,25 @@ namespace AGDAR.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginClient([Bind("Email,Password")] LoginDto dto)
         {
-            //string token = _accountService.GenerateJwt(dto);
-            string token = _accountService.GenerateClientJwt(HttpContext, dto);
+            var client = _accountService.GetClientByEmail(dto.Email);
 
-            ViewBag.JwtToken = token;
-            var client = _accountService.GetClientByEmail(dto.Email); // Załóżmy, że masz tę metodę w IAccountService
-            HttpContext.Session.SetString("ClientEmail", client.Email);
-            HttpContext.Session.SetString("ClientName", client.Name);
-            HttpContext.Session.SetString("ClientOrderId", client.OrderdId.ToString());
-            HttpContext.Session.SetString("ClientId", client.Id.ToString());
-            
-
+            if (client != null)
+            {
+                string token = _accountService.GenerateClientJwt(HttpContext, dto);
+                ViewBag.JwtToken = token;
+                HttpContext.Session.SetString("ClientEmail", client.Email);
+                HttpContext.Session.SetString("ClientName", client.Name);
+                HttpContext.Session.SetString("ClientOrderId", client.OrderdId.ToString());
+                HttpContext.Session.SetString("ClientId", client.Id.ToString());
+            }
+            else
+            {
+                var clientDto = new ClientDto();
+                clientDto.Email = dto.Email;
+                clientDto.Password = dto.Password;
+                ModelState.AddModelError("Email", "Podany adres email nie istnieje");
+                return View(clientDto);
+            }
             return Redirect("/Products");
         }
 
