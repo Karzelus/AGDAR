@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 @inject IHttpContextAccessor context;
+@{
+     DateTime now = DateTime.Now;
+}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,10 +37,24 @@
             <ul class="d-flex list-unstyled mb-0">
                 @if (@context.HttpContext.Session.GetString("ClientId") != null)
                 {
-                    <li style="padding-right:7rem;">
-                        Witaj @context.HttpContext.Session.GetString("ClientName")
-                    </li>
-                }
+                    @if(now.Hour < 12)
+                    {
+                        <li style="padding-right:7rem;">
+                            Witaj, @context.HttpContext.Session.GetString("ClientName") Miłego dnia 
+                        </li>                     
+                    }else if (now.Hour >= 12 && now.Hour < 18)
+                    {
+                        <li style="padding-right:7rem;">
+                            Witaj, @context.HttpContext.Session.GetString("ClientName") Miłego popołudnia 
+                        </li>
+                    }
+                    else
+                    {
+                        <li style="padding-right:7rem;">
+                            Witaj, @context.HttpContext.Session.GetString("ClientName") Miłego wieczoru 
+                        </li>
+                    }
+                                }
                 @if (@context.HttpContext.Session.GetString("ClientId") != null)
                 {
                     <li>

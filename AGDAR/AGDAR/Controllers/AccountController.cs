@@ -39,6 +39,7 @@ namespace AGDAR.Controllers
         //public async Task<IActionResult> CreateClient([Bind("Id,Name,SeckondName,Email,DateOfBirth,Password,ConfirmPassword,OrderId,Order")] ClientDto clientDto)
         public async Task<IActionResult> CreateClient([Bind("Id,Email,Password,ConfirmPassword,Name,SeckondName,DateOfBirth")] ClientDto clientDto)
         {
+            
             if (ModelState.IsValid)
             {
                 _accountService.RegisterClient(clientDto);
@@ -56,7 +57,9 @@ namespace AGDAR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,SeckondName,Email,DateOfBirth,Password,ConfirmPassword,RoleId,Role")] WorkerDto workerDto)
         {
-            if (ModelState.IsValid)
+            workerDto.RoleId = 1;
+            workerDto.Role = "Pracownik";
+            if (!ModelState.IsValid)
             {
                 _accountService.RegisterWorker(workerDto);
                 //await _workerService.Save();
