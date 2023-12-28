@@ -79,7 +79,6 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 //Repositories
 builder.Services.AddScoped<RoleRepository>();
-builder.Services.AddScoped<StateRepository>();
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<ProductCategoryRepository>();
 builder.Services.AddScoped<PartProductRepository>();

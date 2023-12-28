@@ -17,7 +17,6 @@ namespace AGDAR.Models
         public DbSet<Part> Parts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<State> States { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<PartProduct> PartProduct { get; set; }
@@ -133,7 +132,7 @@ namespace AGDAR.Models
         }
 
 
-        public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
+        //public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
 
 
         //public DbSet<AGDAR.Models.DTOs.CreateServiceProductDto>? CreateServiceProductDto { get; set; }

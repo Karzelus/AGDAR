@@ -7,6 +7,7 @@ using AGDAR.Services;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using AGDAR.Repositories;
 using Microsoft.AspNetCore.Http;
+using AGDAR.Emails;
 
 namespace AGDAR.Controllers
 {
@@ -18,13 +19,15 @@ namespace AGDAR.Controllers
         private readonly OrderProductRepository _orderProductRepository;
         private readonly OrderHistoryRepository _orderHistoryRepositroy;
         private readonly IClientService _clientService;
-        public OrderController(IOrderService orderService, IProductService productService, IClientService clientService ,OrderProductRepository orderProductRepository, OrderHistoryRepository orderHistoryRepository ) // Konstruktor
+        private readonly IEmailSender _emailSeneder;
+        public OrderController(IEmailSender emailSeneder ,IOrderService orderService, IProductService productService, IClientService clientService ,OrderProductRepository orderProductRepository, OrderHistoryRepository orderHistoryRepository ) // Konstruktor
         {
             _orderService = orderService;
             _productService = productService;
             _orderProductRepository = orderProductRepository;
             _orderHistoryRepositroy = orderHistoryRepository;
             _clientService = clientService;
+            _emailSeneder = emailSeneder;
         }
 
         // GET: Orders
@@ -85,6 +88,13 @@ namespace AGDAR.Controllers
                 Price = order.Price,
                 OrderEndDate = DateTime.Now
             };
+            var orderProducts = _orderProductRepository.GetAll().Where(x => x.OrderId == orderId).ToList();
+            List<ProductDto> products = new List<ProductDto>();
+            foreach(var product in orderProducts)
+            {
+                products.Add( _productService.GetById(product.ProductId));
+            }
+
             _orderHistoryRepositroy.AddAndSaveChanges(orderHistory); //Tworzymy rekord w zakończonych zamówieniach  
             var newOrder = new CreateOrderDto
             {
@@ -93,7 +103,19 @@ namespace AGDAR.Controllers
                 ClientId = client.Id
             };
             int newOrderId = _orderService.Create(newOrder); //Dajemy nowe zamówienie do tabeli zamówienia i dla użytkonika
-       
+
+            var subject = "Podsumowanie zamówienia";
+            var message = "Dziękujemy za dokonanie zakupów w naszym sklepie\n Zawartość zamówienia: \n";
+            int num = 1;
+            foreach (var product in products)
+            {
+                message += num + ". Nazwa: " + product.Name + " Cena: " + product.Price + "\n";
+                num++;
+            }
+            message += "Kwota końcowa: " + order.Price + " zł";
+
+            _emailSeneder.SendEmailAsync(client.Email, subject, message);
+
             client.OrderdId = newOrderId;
             _clientService.Update(client.Id,client);
             return Redirect("/Products");
@@ -183,63 +205,6 @@ namespace AGDAR.Controllers
         private bool orderxists(int id)
         {
             return (_orderService.GetAll()?.Any(o => o.Id == id)).GetValueOrDefault();
-        }
-
-
-
-
-        //[HttpPut("{id}")]
-        //public ActionResult Update([FromBody] OrderDto dto, [FromRoute] int id) //Edit
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var isUpdated = _orderService.Update(id, dto);
-        //    if (!isUpdated)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok();
-
-        //}
-        //[HttpDelete("{id}")] // Delete
-        //public ActionResult Delete([FromRoute] int id)
-        //{
-        //    var isDeleted = _orderService.Delete(id);
-
-        //    if (isDeleted) return NoContent();
-        //    return NotFound();
-        //}
-
-        //[HttpPost]
-        //public ActionResult CreateOrder([FromBody]CreateOrderDto dto) // Create
-        //{
-        //    if(!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var id = _orderService.Create(dto);
-        //    return Created($"/api/category/{id}", null);
-        //}
-
-        //[HttpGet]
-        //public ActionResult<IEnumerable<OrderDto>> GetAll() // GetAll
-        //{
-        //    var ordersDtos = _orderService.GetAll();
-        //    return Ok(ordersDtos);
-        //}
-
-        //[HttpGet("{id}")]
-        //public ActionResult<OrderDto> Get([FromRoute] int id) // Get
-        //{
-        //    var order = _orderService.GetById(id);
-        //    if (order == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(order);
-        //}
+        }      
     }
 }

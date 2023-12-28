@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dawid\\Desktop\\06.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
+    "C:\\Users\\Dawid\\Desktop\\Inżynierka 27.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dawid\\Desktop\\06.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
+    "C:\\Users\\Dawid\\Desktop\\Inżynierka 27.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\06.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\Inżynierka 27.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "projectName": "AGDAR",
-        "projectPath": "C:\\Users\\Dawid\\Desktop\\06.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
+        "projectPath": "C:\\Users\\Dawid\\Desktop\\Inżynierka 27.12.2023\\AGDAR\\AGDAR\\AGDAR\\AGDAR.csproj",
         "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dawid\\Desktop\\06.12.2023\\AGDAR\\AGDAR\\AGDAR\\obj\\",
+        "outputPath": "C:\\Users\\Dawid\\Desktop\\Inżynierka 27.12.2023\\AGDAR\\AGDAR\\AGDAR\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,7 +86,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -93,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
