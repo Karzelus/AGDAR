@@ -109,7 +109,7 @@ namespace AGDAR.Controllers
             int num = 1;
             foreach (var product in products)
             {
-                message += num + ". Nazwa: " + product.Name + " Cena: " + product.Price + "\n";
+                message += num + ". Nazwa: " + product.Name + " Cena: " + product.Price +  " zł\n";
                 num++;
             }
             message += "Kwota końcowa: " + order.Price + " zł";
