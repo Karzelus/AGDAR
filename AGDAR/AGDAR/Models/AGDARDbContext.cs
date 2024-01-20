@@ -133,7 +133,7 @@ namespace AGDAR.Models
         }
 
 
-        public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
+        //public DbSet<AGDAR.Models.DTO.ClientDto>? ClientDto { get; set; }
 
 
         //public DbSet<AGDAR.Models.DTOs.CreateServiceProductDto>? CreateServiceProductDto { get; set; }
